@@ -5,6 +5,7 @@ const FOOTER_LINKS = [
   { href: "/about", label: "About" },
   { href: "/methodology", label: "Methodology" },
   { href: "/action", label: "What Can I Do" },
+  { href: "/press", label: "Press" },
   { href: "#github", label: "GitHub" },
 ];
 

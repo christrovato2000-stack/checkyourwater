@@ -6,6 +6,7 @@ import GradeCard from "@/components/GradeCard";
 import ContaminantRow from "@/components/ContaminantRow";
 import ActionsByGrade from "@/components/ActionsByGrade";
 import AiDisclaimer from "@/components/AiDisclaimer";
+import DownloadReportButton from "@/components/DownloadReportButton";
 import { loadCity } from "@/lib/cityData";
 import {
   formatGradeSummary,
@@ -119,6 +120,14 @@ export default async function CityPage({
           <p className="font-serif text-xl leading-snug text-slate-800 sm:text-2xl">
             {formatGradeSummary(city.grade)}
           </p>
+        </div>
+
+        <div className="mt-6">
+          <DownloadReportButton
+            href={`/api/report/city/${slug}`}
+            filename={`water-quality-report-${slug}.pdf`}
+            label="Download City Report (PDF)"
+          />
         </div>
 
         <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-y border-slate-200 py-6 sm:grid-cols-4">

@@ -5,6 +5,8 @@ import GradeCard from "@/components/GradeCard";
 import ContaminantRow from "@/components/ContaminantRow";
 import ActionsByGrade from "@/components/ActionsByGrade";
 import AiDisclaimer from "@/components/AiDisclaimer";
+import DownloadReportButton from "@/components/DownloadReportButton";
+import EmbedCodeGenerator from "@/components/EmbedCodeGenerator";
 import { loadSystem } from "@/lib/cityData";
 import {
   formatGradeSummary,
@@ -96,6 +98,17 @@ export default async function SystemPage({
             {formatGradeSummary(system.grade)}
           </p>
         </div>
+
+        <div className="mt-6 flex flex-wrap items-center gap-3">
+          <DownloadReportButton
+            href={`/api/report/${system.pwsid}`}
+            filename={`water-quality-report-${system.pwsid}.pdf`}
+          />
+        </div>
+        <EmbedCodeGenerator
+          pwsid={system.pwsid}
+          systemName={system.pws_name}
+        />
 
         <dl className="mt-8 grid grid-cols-2 gap-x-6 gap-y-4 border-y border-slate-200 py-6 sm:grid-cols-4">
           <Stat

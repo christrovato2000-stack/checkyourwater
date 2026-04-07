@@ -171,6 +171,12 @@ export default function AboutPage() {
             >
               press@checkyourwater.org
             </a>
+            . See our{" "}
+            <Link href="/press" className="text-blue-600 hover:underline">
+              press page
+            </Link>{" "}
+            for citation guidelines, embeddable widgets, and downloadable
+            reports.
           </li>
           <li>
             For general questions:{" "}

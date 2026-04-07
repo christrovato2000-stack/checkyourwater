@@ -258,6 +258,19 @@ export default async function ArticlePage({
             <NotifySignup />
           </section>
 
+          {/* Press pointer */}
+          <p className="mt-10 rounded-lg border border-slate-200 bg-slate-50 px-5 py-4 font-sans text-sm text-slate-700">
+            Journalists: citation guidelines, embeddable widgets, and
+            downloadable reports are available on our{" "}
+            <Link
+              href="/press"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              press page
+            </Link>
+            .
+          </p>
+
           {/* Related */}
           {related.length > 0 && (
             <section className="mt-16 border-t border-slate-200 pt-10">
