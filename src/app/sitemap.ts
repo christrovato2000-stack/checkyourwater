@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { supabasePublic } from "@/lib/supabase";
+import { getAllPosts } from "@/lib/blog";
 
 const BASE = "https://checkyourwater.org";
 
@@ -39,7 +40,20 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       changeFrequency: "weekly",
       priority: 0.7,
     },
+    {
+      url: `${BASE}/blog`,
+      lastModified: now,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
   ];
+
+  const blogPages: MetadataRoute.Sitemap = getAllPosts().map((p) => ({
+    url: `${BASE}/blog/${p.frontmatter.slug}`,
+    lastModified: new Date(p.frontmatter.last_updated ?? p.frontmatter.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.85,
+  }));
 
   let cityPages: MetadataRoute.Sitemap = [];
   let chemicalPages: MetadataRoute.Sitemap = [];
@@ -72,5 +86,5 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     console.error("[sitemap] chemicals query failed", err);
   }
 
-  return [...staticPages, ...cityPages, ...chemicalPages];
+  return [...staticPages, ...cityPages, ...chemicalPages, ...blogPages];
 }

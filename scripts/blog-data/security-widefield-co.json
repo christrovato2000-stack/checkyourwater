@@ -1,0 +1,625 @@
+{
+  "city": {
+    "slug": "security-widefield-co",
+    "city_name": "Security-Widefield",
+    "state_code": "CO",
+    "state_name": "Colorado",
+    "population": 38000,
+    "systems_count": 5,
+    "primary_pwsid": "CO0121900",
+    "grade": "D",
+    "worst_compound": "PFOS",
+    "worst_ratio": 2.475,
+    "total_detections": 14,
+    "total_exceedances": 3,
+    "latitude": 38.58821,
+    "longitude": -104.67753,
+    "contamination_source": "Peterson Space Force Base (AFFF)",
+    "settlement_status": "DoD remediation; community on alternate supply",
+    "news_hook": "Military base cleanup",
+    "launch_wave": 2,
+    "created_at": "2026-04-07T06:24:57.427475",
+    "updated_at": "2026-04-07T06:24:57.427475"
+  },
+  "systems": [
+    {
+      "pwsid": "CO0121900",
+      "pws_name": "WIDEFIELD WSD",
+      "city_served": "COLORADO SPRINGS",
+      "state_code": "CO",
+      "population_served": 27640,
+      "source_type": "SWP",
+      "grade": "D"
+    }
+  ],
+  "detections": [
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFHpS",
+      "compound_name": "Perfluoroheptanesulfonic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "ADONA",
+      "compound_name": "4,8-dioxa-3H-perfluorononanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "HFPO-DA",
+      "compound_name": "Hexafluoropropylene oxide dimer acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": 10,
+      "mcl_ratio": null,
+      "has_mcl": true,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFBA",
+      "compound_name": "Perfluorobutanoic acid",
+      "avg_concentration": 26.0692,
+      "max_concentration": 42,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 13
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "6:2FTS",
+      "compound_name": "1H,1H,2H,2H-perfluorooctanesulfonic acid (6:2 FTS)",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "4:2FTS",
+      "compound_name": "1H,1H,2H,2H-perfluorohexanesulfonic acid (4:2 FTS)",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "8:2FTS",
+      "compound_name": "1H,1H,2H,2H-perfluorodecanesulfonic acid (8:2 FTS)",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFMPA",
+      "compound_name": "Perfluoro-3-methoxypropanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFPeA",
+      "compound_name": "Perfluoropentanoic acid",
+      "avg_concentration": 57.4143,
+      "max_concentration": 108.9,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 14
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFEESA",
+      "compound_name": "Perfluoro (2-ethoxyethane) sulfonic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFPeS",
+      "compound_name": "Perfluoropentanesulfonic acid",
+      "avg_concentration": 5.05,
+      "max_concentration": 5.3,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 2
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "NFDHA",
+      "compound_name": "Nonafluoro-3,6-dioxaheptanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "9Cl-PF3ONS",
+      "compound_name": "9-chlorohexadecafluoro-3-oxanonane-1-sulfonic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFMBA",
+      "compound_name": "Perfluoro(4-methoxybutanoic) acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "NMeFOSAA",
+      "compound_name": "N-methyl perfluorooctanesulfonamidoacetic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFHpA",
+      "compound_name": "Perfluoroheptanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFHxS",
+      "compound_name": "Perfluorohexanesulfonic acid",
+      "avg_concentration": 19.4333,
+      "max_concentration": 28.4,
+      "mcl": 10,
+      "mcl_ratio": 1.9433,
+      "has_mcl": true,
+      "sample_count": 24,
+      "detection_count": 6
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFNA",
+      "compound_name": "Perfluorononanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": 10,
+      "mcl_ratio": null,
+      "has_mcl": true,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFBS",
+      "compound_name": "Perfluorobutanesulfonic acid",
+      "avg_concentration": 12.35,
+      "max_concentration": 16.7,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 6
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFOA",
+      "compound_name": "Perfluorooctanoic acid",
+      "avg_concentration": 9.1,
+      "max_concentration": 10.5,
+      "mcl": 4,
+      "mcl_ratio": 2.275,
+      "has_mcl": true,
+      "sample_count": 24,
+      "detection_count": 4
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "11Cl-PF3OUdS",
+      "compound_name": "11-chloroeicosafluoro-3-oxaundecane-1-sulfonic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "NEtFOSAA",
+      "compound_name": "N-ethyl perfluorooctanesulfonamidoacetic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFTrDA",
+      "compound_name": "Perfluorotridecanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFTA",
+      "compound_name": "Perfluorotetradecanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFDA",
+      "compound_name": "Perfluorodecanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFDoA",
+      "compound_name": "Perfluorododecanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFHxA",
+      "compound_name": "Perfluorohexanoic acid",
+      "avg_concentration": 33.375,
+      "max_concentration": 140.6,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 12
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFUnA",
+      "compound_name": "Perfluoroundecanoic acid",
+      "avg_concentration": null,
+      "max_concentration": null,
+      "mcl": null,
+      "mcl_ratio": null,
+      "has_mcl": false,
+      "sample_count": 24,
+      "detection_count": 0
+    },
+    {
+      "pwsid": "CO0121900",
+      "compound_abbrev": "PFOS",
+      "compound_name": "Perfluorooctanesulfonic acid",
+      "avg_concentration": 9.9,
+      "max_concentration": 15.8,
+      "mcl": 4,
+      "mcl_ratio": 2.475,
+      "has_mcl": true,
+      "sample_count": 24,
+      "detection_count": 4
+    }
+  ],
+  "chemicals": [
+    {
+      "compound_abbrev": "11Cl-PF3OUdS",
+      "compound_name": "11-chloroeicosafluoro-3-oxaundecane-1-sulfonic acid",
+      "cas_number": "763051-92-9",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "9Cl-PF3ONS",
+      "compound_name": "9-chlorohexadecafluoro-3-oxanonane-1-sulfonic acid",
+      "cas_number": "756426-58-1",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "HFPO-DA",
+      "compound_name": "Hexafluoropropylene oxide dimer acid",
+      "cas_number": "13252-13-6",
+      "mcl_ppt": 10,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "ADONA",
+      "compound_name": "4,8-dioxa-3H-perfluorononanoic acid",
+      "cas_number": "919005-14-4",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "NFDHA",
+      "compound_name": "Nonafluoro-3,6-dioxaheptanoic acid",
+      "cas_number": "151772-58-6",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFMPA",
+      "compound_name": "Perfluoro-3-methoxypropanoic acid",
+      "cas_number": "377-73-1",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFMBA",
+      "compound_name": "Perfluoro(4-methoxybutanoic) acid",
+      "cas_number": "863090-89-5",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFEESA",
+      "compound_name": "Perfluoro (2-ethoxyethane) sulfonic acid",
+      "cas_number": "113507-82-7",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFBA",
+      "compound_name": "Perfluorobutanoic acid",
+      "cas_number": "375-22-4",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFPeA",
+      "compound_name": "Perfluoropentanoic acid",
+      "cas_number": "2706-90-3",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFHxA",
+      "compound_name": "Perfluorohexanoic acid",
+      "cas_number": "307-24-4",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFHpA",
+      "compound_name": "Perfluoroheptanoic acid",
+      "cas_number": "375-85-9",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFOA",
+      "compound_name": "Perfluorooctanoic acid",
+      "cas_number": "335-67-1",
+      "mcl_ppt": 4,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFNA",
+      "compound_name": "Perfluorononanoic acid",
+      "cas_number": "375-95-1",
+      "mcl_ppt": 10,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFDA",
+      "compound_name": "Perfluorodecanoic acid",
+      "cas_number": "335-76-2",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFUnA",
+      "compound_name": "Perfluoroundecanoic acid",
+      "cas_number": "2058-94-8",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFDoA",
+      "compound_name": "Perfluorododecanoic acid",
+      "cas_number": "307-55-1",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFTrDA",
+      "compound_name": "Perfluorotridecanoic acid",
+      "cas_number": "72629-94-8",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFTA",
+      "compound_name": "Perfluorotetradecanoic acid",
+      "cas_number": "376-06-7",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFBS",
+      "compound_name": "Perfluorobutanesulfonic acid",
+      "cas_number": "375-73-5",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFPeS",
+      "compound_name": "Perfluoropentanesulfonic acid",
+      "cas_number": "2706-91-4",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFHxS",
+      "compound_name": "Perfluorohexanesulfonic acid",
+      "cas_number": "355-46-4",
+      "mcl_ppt": 10,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFHpS",
+      "compound_name": "Perfluoroheptanesulfonic acid",
+      "cas_number": "375-92-8",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "PFOS",
+      "compound_name": "Perfluorooctanesulfonic acid",
+      "cas_number": "1763-23-1",
+      "mcl_ppt": 4,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "4:2FTS",
+      "compound_name": "1H,1H,2H,2H-perfluorohexanesulfonic acid (4:2 FTS)",
+      "cas_number": "757124-72-4",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "6:2FTS",
+      "compound_name": "1H,1H,2H,2H-perfluorooctanesulfonic acid (6:2 FTS)",
+      "cas_number": "27619-97-2",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "8:2FTS",
+      "compound_name": "1H,1H,2H,2H-perfluorodecanesulfonic acid (8:2 FTS)",
+      "cas_number": "39108-34-4",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "NEtFOSAA",
+      "compound_name": "N-ethyl perfluorooctanesulfonamidoacetic acid",
+      "cas_number": "2991-50-6",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    },
+    {
+      "compound_abbrev": "NMeFOSAA",
+      "compound_name": "N-methyl perfluorooctanesulfonamidoacetic acid",
+      "cas_number": "2355-31-9",
+      "mcl_ppt": null,
+      "health_effects": null,
+      "common_sources": null
+    }
+  ],
+  "totals": {
+    "systems": 1,
+    "population_served": 27640,
+    "detections": 29,
+    "exceedances": 3
+  }
+}

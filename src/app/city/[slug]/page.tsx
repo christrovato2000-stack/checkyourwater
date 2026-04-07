@@ -13,6 +13,7 @@ import {
   formatPopulation,
 } from "@/lib/format";
 import { supabasePublic } from "@/lib/supabase";
+import { getPostByCitySlug } from "@/lib/blog";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -92,6 +93,8 @@ export default async function CityPage({
     totalPopulation,
   } = payload;
 
+  const investigation = getPostByCitySlug(slug);
+
   const gradeIsBad = city.grade === "D" || city.grade === "F";
 
   return (
@@ -132,6 +135,23 @@ export default async function CityPage({
           stateName={city.state_name}
           grade={city.grade}
         />
+
+        {investigation && (
+          <div className="mt-8 rounded-lg border-l-4 border-blue-600 bg-blue-50 px-5 py-4">
+            <p className="font-sans text-xs font-semibold uppercase tracking-widest text-blue-700">
+              Read the full investigation
+            </p>
+            <Link
+              href={`/blog/${investigation.frontmatter.slug}`}
+              className="mt-1 block font-serif text-xl font-semibold text-slate-900 hover:text-blue-700 hover:underline"
+            >
+              {investigation.frontmatter.title}
+            </Link>
+            <p className="mt-2 font-sans text-sm text-slate-700">
+              {investigation.frontmatter.description}
+            </p>
+          </div>
+        )}
       </header>
 
       {/* SECTION 2: CONTAMINATION SUMMARY */}

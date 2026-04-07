@@ -5,6 +5,7 @@ import GradeCard from "@/components/GradeCard";
 import { supabasePublic } from "@/lib/supabase";
 import { formatRatio } from "@/lib/format";
 import type { Grade } from "@/types/database";
+import { getAllPosts, categoryLabel, formatPostDate } from "@/lib/blog";
 
 interface CityRow {
   slug: string;
@@ -33,6 +34,7 @@ async function loadLaunchCities(): Promise<CityRow[]> {
 
 export default async function HomePage() {
   const cities = await loadLaunchCities();
+  const latestPosts = getAllPosts().slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -204,6 +206,55 @@ export default async function HomePage() {
           </div>
         )}
       </section>
+
+      {/* SECTION 6: LATEST INVESTIGATIONS */}
+      {latestPosts.length > 0 && (
+        <section className="border-t border-slate-200 bg-slate-50">
+          <div className="mx-auto max-w-[1200px] px-4 py-20 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h2 className="max-w-[720px] font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+                  Latest investigations
+                </h2>
+                <p className="mt-3 max-w-[720px] font-sans text-base text-slate-600">
+                  Plain-language reporting on what EPA testing has found in
+                  specific communities, and what residents can do about it.
+                </p>
+              </div>
+              <Link
+                href="/blog"
+                className="font-sans text-base font-semibold text-blue-600 hover:underline"
+              >
+                All articles →
+              </Link>
+            </div>
+
+            <ul className="mt-10 grid gap-6 md:grid-cols-3">
+              {latestPosts.map((p) => (
+                <li key={p.frontmatter.slug}>
+                  <Link
+                    href={`/blog/${p.frontmatter.slug}`}
+                    className="group block h-full rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-blue-400 hover:shadow-sm"
+                  >
+                    <span className="rounded-full bg-blue-50 px-3 py-1 font-sans text-xs font-semibold uppercase tracking-wide text-blue-700">
+                      {categoryLabel(p.frontmatter.category)}
+                    </span>
+                    <h3 className="mt-4 font-serif text-xl font-semibold leading-snug text-slate-900 group-hover:text-blue-700">
+                      {p.frontmatter.title}
+                    </h3>
+                    <p className="mt-3 font-sans text-sm leading-relaxed text-slate-600">
+                      {p.frontmatter.description}
+                    </p>
+                    <p className="mt-4 font-sans text-xs text-slate-500">
+                      {formatPostDate(p.frontmatter.date)} · {p.readMinutes} min read
+                    </p>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
     </>
   );
 }

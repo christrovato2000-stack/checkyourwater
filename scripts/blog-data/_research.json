@@ -1,0 +1,90 @@
+{
+  "parkersburg-wv": {
+    "headline_facts": [
+      "DuPont/Chemours Washington Works plant in Wood County is the original 'Dark Waters' PFAS contamination site documented by attorney Rob Bilott. The C8 Science Panel established probable links between PFOA exposure and kidney cancer, testicular cancer, ulcerative colitis, thyroid disease, pregnancy-induced hypertension, and high cholesterol.",
+      "On August 7, 2025, a federal judge ordered Chemours to stop releasing PFAS waste, including HFPO-DA (GenX), into the Ohio River from its Washington Works facility. The ruling came in a Clean Water Act lawsuit filed by the West Virginia Rivers Coalition in December 2024.",
+      "The Parkersburg Utility Board has installed granular activated carbon (GAC) treatment at its plant. The utility states finished water now tests below the EPA's 4 ppt MCL for PFOA, but EPA UCMR 5 sampling still shows detectable PFOA in the system data.",
+      "In 2025, the Trump administration's EPA cancelled a state grant that would have funded PFAS cleanup work in West Virginia. The cancellation was part of more than 400 grants totaling $1.5 billion that were terminated.",
+      "The Lubeck Public Service District, a separate water system serving residents just outside Parkersburg, has historically tested at levels approaching 45 times the federal MCL for PFOA. Lubeck PSD is not part of the Parkersburg Utility Board system."
+    ],
+    "sources": [
+      {"outlet": "Manufacturing Dive", "headline": "Federal court orders Chemours to stop PFAS discharge from West Virginia facility", "url": "https://www.manufacturingdive.com/news/chemours-stop-pfas-genx-hfpo-da-waste-west-virginia-washington-works-court-ruling/757753/"},
+      {"outlet": "Mountain State Spotlight", "headline": "Trump's EPA blocks effort to reduce toxic 'forever chemicals' in West Virginia drinking water", "url": "https://mountainstatespotlight.org/2025/05/07/trump-epa-pfas-canceled-grant/"},
+      {"outlet": "PFAS Project Lab", "headline": "Parkersburg, West Virginia", "url": "https://pfasproject.com/parkersburg-west-virginia/"}
+    ]
+  },
+  "calhoun-ga": {
+    "headline_facts": [
+      "Calhoun sits within the carpet manufacturing region of northwest Georgia, anchored by Dalton, where decades of carpet treatment with PFAS-laden products like 3M Scotchgard contaminated soil, groundwater, and drinking water sources.",
+      "In November 2024, carpet maker Mohawk Industries sued 3M, DuPont, Chemours, and Daikin America, alleging the chemical companies hid the dangers of PFAS for decades while marketing them as safe.",
+      "The Southern Environmental Law Center sued Calhoun in 2022 over PFAS contamination. As a result of that lawsuit, the city installed temporary filters and began working on permanent treatment.",
+      "Erin Brockovich visited the area in December 2024 and described it as 'a big one,' calling for stronger state action.",
+      "The City of Chatsworth and Catoosa County have filed separate lawsuits against 3M and carpet manufacturers for PFAS cleanup costs.",
+      "Calhoun has reported nondetectable levels of PFAS in finished drinking water in recent monthly testing, after installation of treatment, though EPA UCMR 5 sampling collected before that treatment shows multiple compounds at levels exceeding federal limits."
+    ],
+    "sources": [
+      {"outlet": "Atlanta News First", "headline": "Erin Brockovich: 'You have a PFAS contamination and it's a big one'", "url": "https://www.atlantanewsfirst.com/2024/12/10/erin-brockovich-you-have-pfas-contamination-its-big-one/"},
+      {"outlet": "Northwest Georgia News", "headline": "Dalton Sues Chemical And Carpet Manufacturers For PFAS Cleanup Costs", "url": "https://www.northwestgeorgianews.com/calhoun_times/news/local/dalton-sues-chemical-and-carpet-manufacturers-for-pfas-cleanup-costs/article_4a00cdb2-bc96-11ef-a346-5b944f521989.html"},
+      {"outlet": "Manufacturing Dive", "headline": "Georgia county sues 3M, Daikin and others over PFAS contamination", "url": "https://www.manufacturingdive.com/news/catoosa-county-georgia-sues-3m-mohawk-industries-eidp-daikin-pfas-carpets/739300/"}
+    ]
+  },
+  "security-widefield-co": {
+    "headline_facts": [
+      "PFAS were first discovered in municipal water wells in Security and Widefield in 2013. The chemicals originated at Peterson Air Force Base (now Peterson Space Force Base), where firefighters used aqueous film-forming foam (AFFF) for training and emergencies starting in the 1970s.",
+      "Wastewater contaminated with the foam was dumped into Colorado Springs sewers and seeped into the Widefield Aquifer, the source of drinking water for tens of thousands of residents.",
+      "All 32 of the Security Water and Sanitation District's wells once measured PFAS levels above the EPA's 2016 health advisory of 70 ppt. One well measured 1,370 ppt, nearly twenty times that level.",
+      "By 2016, both Security and Widefield installed filtration systems. The systems substantially reduced PFAS in finished water, though several compounds still appear in EPA UCMR 5 sampling.",
+      "The CDC's Agency for Toxic Substances and Disease Registry conducted a multi-site exposure study in El Paso County to track health effects among residents who drank the contaminated water.",
+      "Senators Bennet and Hickenlooper urged the Air Force in 2022 to accelerate cleanup efforts. As of 2025, residents and advocates continue to press for faster federal action."
+    ],
+    "sources": [
+      {"outlet": "Colorado Public Radio", "headline": "Air Force Confirms Peterson AFB Firefighting Foam Toxins Leached Into Groundwater", "url": "https://www.cpr.org/2017/07/25/air-force-confirms-peterson-afb-firefighting-foam-toxins-leached-into-groundwater/"},
+      {"outlet": "Denver Gazette", "headline": "CDC issues report on 'forever chemicals' from Peterson Air Force Base", "url": "https://denvergazette.com/military/cdc-issues-report-on-forever-chemicals-from-peterson-air-force-base/article_08f989fc-ec33-11ec-bf5c-9b146b7baad3.html"},
+      {"outlet": "Environmental Working Group", "headline": "Mapping PFAS Chemical Contamination at 206 U.S. Military Sites", "url": "https://www.ewg.org/research/mapping-pfas-chemical-contamination-206-us-military-sites"}
+    ]
+  },
+  "parchment-mi": {
+    "headline_facts": [
+      "In July 2018, Parchment's public water supply tested at 1,587 parts per trillion total PFAS, including 740 ppt PFOA and 670 ppt PFOS. At the time it was the highest PFAS contamination ever recorded in a Michigan public water system.",
+      "Michigan declared a state of emergency. A 'do not drink' advisory was issued. Within weeks the City of Parchment shut down its three contaminated wells and connected its 1,200 customers (about 3,100 people) to the City of Kalamazoo's water system. Parchment residents are now served by Kalamazoo, which is the system reflected in current EPA UCMR 5 data.",
+      "The source was traced to the Crown Vantage paper mill landfill in Parchment, where decades of paper treatment with PFAS-containing grease and oil repellents had contaminated groundwater. Test wells near the landfill showed PFAS concentrations up to 11,500 ppt.",
+      "In a 2021 settlement, 3M and Georgia-Pacific agreed to pay $11.9 million to resolve plaintiffs' claims over the Parchment contamination.",
+      "Studies have continued to find PFAS in the blood of former Parchment residents years after their water supply was switched."
+    ],
+    "sources": [
+      {"outlet": "Michigan PFAS Response", "headline": "Crown Vantage Property (Parchment, Kalamazoo County)", "url": "https://www.michigan.gov/pfasresponse/investigations/sites-aoi/kalamazoo-county/crown-vantage-property"},
+      {"outlet": "WaterWorld", "headline": "$11.9 Million Settlement Reached in Lawsuit for Parchment, Michigan, Drinking Water Contaminated with PFAS", "url": "https://www.waterworld.com/residential-commercial/news/14306792/119-million-settlement-reached-in-lawsuit-for-parchment-michigan-drinking-water-contaminated-with-pfas"},
+      {"outlet": "Environmental Health News", "headline": "Toxic PFAS from defunct Michigan paper mill still found in residents' blood", "url": "https://www.ehn.org/toxic-pfas-from-defunct-michigan-paper-mill-still-found-in-residents-blood"}
+    ]
+  },
+  "merrimack-nh": {
+    "headline_facts": [
+      "PFAS were discovered in hundreds of private and public wells around the Saint-Gobain Performance Plastics facility in Merrimack starting in 2016. The state of New Hampshire has long blamed the plant for contaminating air and groundwater across Merrimack, Litchfield, Bedford, Hudson, and Londonderry.",
+      "In 2019, Merrimack voters approved a $14.5 million bond for the Merrimack Village District to install treatment systems on four contaminated public wells. Saint-Gobain agreed to pay for treatment on two additional wells.",
+      "Under a 2022 consent decree, Saint-Gobain agreed to provide clean drinking water to about 1,000 homes whose private wells were contaminated. In March 2026, the New Hampshire Attorney General announced a deal extending Saint-Gobain's obligation to connect 350 additional properties to public water.",
+      "Saint-Gobain ended operations at the Merrimack plant in May 2024 and completed demolition of the facility in 2025.",
+      "EPA UCMR 5 data shows the Merrimack Village District's finished water now meets federal standards across all monitored compounds, a direct result of years of treatment investment.",
+      "Despite the cleanup progress, Merrimack residents and the citizens group Merrimack Citizens for Clean Water continue to push for full remediation of contaminated soil at the former plant site."
+    ],
+    "sources": [
+      {"outlet": "New Hampshire Bulletin", "headline": "'Forever chemicals' have cost Merrimack millions; now leaders seek fair share of settlement funds", "url": "https://newhampshirebulletin.com/2024/09/30/forever-chemicals-have-cost-merrimack-millions-now-leaders-seek-fair-share-of-settlement-funds/"},
+      {"outlet": "New Hampshire Public Radio", "headline": "Saint-Gobain completes demolition of Merrimack facility embroiled in PFAS pollution scandal", "url": "https://www.nhpr.org/nh-news/2025-07-08/saint-gobain-merrimack-demolition-pfas-water-contamination"},
+      {"outlet": "InDepthNH.org", "headline": "AG: Deal with Saint-Gobain To Connect 350 Properties to Public Water Due To PFAS", "url": "https://indepthnh.org/2026/03/31/ag-deal-with-saint-gobain-to-connect-homes-to-public-water-due-to-pfas-contamination/"}
+    ]
+  },
+  "newburgh-ny": {
+    "headline_facts": [
+      "In May 2016, the City of Newburgh declared a state of emergency and shut off its primary drinking water source, Washington Lake, after PFOS was detected at concentrations up to 5,900 parts per trillion in some areas of the lake.",
+      "The contamination was traced to Stewart Air National Guard Base, where decades of firefighting foam use, including a 1990 accidental release of 4,000 gallons of foam from a hangar sprinkler system, sent PFAS into Recreation Pond, Silver Stream, and ultimately Washington Lake.",
+      "On August 12, 2016, the New York Department of Environmental Conservation listed Stewart Air National Guard Base as a Class 2A state Superfund site.",
+      "Newburgh has gone nearly a decade without its main water source. The city has relied on the Catskill Aqueduct and Brown's Pond as alternative supplies. A granular activated carbon treatment system was installed at the Newburgh filtration plant in January 2018.",
+      "In October 2025, the Newburgh Restoration Advisory Board warned that a federal government shutdown could delay PFAS cleanup work at Stewart Air National Guard Base.",
+      "The City of Newburgh has filed federal lawsuits against the U.S. Air Force, the State of New York, the airport operators, and PFAS manufacturers seeking damages for the contamination of Washington Lake."
+    ],
+    "sources": [
+      {"outlet": "Hudson River Sloop Clearwater", "headline": "Newburgh PFAS Drinking Water Contamination + Cleanup", "url": "https://www.clearwater.org/newburgh/"},
+      {"outlet": "WAMC", "headline": "RAB fears federal shutdown will delay PFAS cleanup at Stewart Air National Guard Base", "url": "https://www.wamc.org/news/2025-10-21/rab-fears-federal-shutdown-will-delay-pfas-cleanup-at-stewart-air-national-guard-base"},
+      {"outlet": "NYSDEC", "headline": "Newburgh", "url": "https://dec.ny.gov/environmental-protection/site-cleanup/regional-remediation-project-information/region-3/newburgh"}
+    ]
+  }
+}
