@@ -328,6 +328,16 @@ export default async function StatePage({
               </tbody>
             </table>
           </div>
+          <p className="mt-4 font-sans text-sm text-slate-700">
+            Resources for taking action are available in our{" "}
+            <Link
+              href="/toolkit"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              community toolkit
+            </Link>
+            .
+          </p>
         </section>
       )}
 

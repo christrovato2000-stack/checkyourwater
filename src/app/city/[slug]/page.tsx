@@ -21,6 +21,8 @@ import {
   categoryLabel as newsCategoryLabel,
   formatNewsDate,
 } from "@/lib/news";
+import { getCityUpdates } from "@/lib/cityUpdates";
+import CityUpdatesTimeline from "@/components/CityUpdatesTimeline";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -101,7 +103,10 @@ export default async function CityPage({
   } = payload;
 
   const investigation = getPostByCitySlug(slug);
-  const cityNews = await getNewsForCity(slug);
+  const [cityNews, cityUpdates] = await Promise.all([
+    getNewsForCity(slug),
+    getCityUpdates(slug),
+  ]);
   const stateInfo = getStateByCode(city.state_code);
 
   const gradeIsBad = city.grade === "D" || city.grade === "F";
@@ -287,6 +292,35 @@ export default async function CityPage({
           </p>
         )}
       </section>
+
+      {/* SECTION 3.5: WHAT HAPPENED NEXT */}
+      <CityUpdatesTimeline cityName={city.city_name} updates={cityUpdates} />
+
+      {/* SECTION 3.7: TOOLKIT CALLOUT for D/F cities */}
+      {gradeIsBad && (
+        <aside className="mt-12 rounded-lg border border-blue-200 bg-blue-50 p-6">
+          <p className="font-sans text-xs font-semibold uppercase tracking-widest text-blue-700">
+            Take action
+          </p>
+          <p className="mt-2 font-serif text-lg leading-snug text-slate-900">
+            Download a{" "}
+            <Link
+              href="/toolkit/council-letter"
+              className="font-semibold text-blue-700 underline hover:text-blue-800"
+            >
+              letter template
+            </Link>{" "}
+            to send to your city council, or learn how to{" "}
+            <Link
+              href="/toolkit/meeting-guide"
+              className="font-semibold text-blue-700 underline hover:text-blue-800"
+            >
+              speak at a public meeting
+            </Link>
+            .
+          </p>
+        </aside>
+      )}
 
       {/* SECTION 4: WHAT YOU CAN DO */}
       <section className="mt-16">

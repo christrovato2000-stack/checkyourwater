@@ -258,8 +258,21 @@ export default async function ArticlePage({
             <NotifySignup />
           </section>
 
+          {/* Toolkit pointer */}
+          <p className="mt-10 rounded-lg border-l-4 border-blue-600 bg-blue-50 px-5 py-4 font-sans text-sm text-slate-800">
+            What you can do: Our free{" "}
+            <Link
+              href="/toolkit"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              community toolkit
+            </Link>{" "}
+            includes letter templates, public records request guides, and
+            meeting preparation resources.
+          </p>
+
           {/* Press pointer */}
-          <p className="mt-10 rounded-lg border border-slate-200 bg-slate-50 px-5 py-4 font-sans text-sm text-slate-700">
+          <p className="mt-4 rounded-lg border border-slate-200 bg-slate-50 px-5 py-4 font-sans text-sm text-slate-700">
             Journalists: citation guidelines, embeddable widgets, and
             downloadable reports are available on our{" "}
             <Link

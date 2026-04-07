@@ -144,6 +144,36 @@ export interface EmailSubscriber {
   unsubscribed_at: string | null;
 }
 
+export type CityUpdateCategory =
+  | "government-action"
+  | "utility-response"
+  | "legal"
+  | "community-action"
+  | "media-coverage";
+
+export interface CityUpdate {
+  id: string;
+  city_slug: string;
+  update_date: string; // ISO YYYY-MM-DD
+  title: string;
+  description: string;
+  source_url: string | null;
+  source_name: string | null;
+  category: CityUpdateCategory;
+  created_at?: string;
+}
+
+export interface InvestigationRequest {
+  id: string;
+  email: string;
+  zip_code: string;
+  city_name: string;
+  state: string;
+  reason: string;
+  submitted_at: string;
+  status: "pending" | "reviewing" | "researching" | "published" | "declined";
+}
+
 /** What our zip-search API returns to the web client. */
 export interface SearchResult {
   zip_code: string;

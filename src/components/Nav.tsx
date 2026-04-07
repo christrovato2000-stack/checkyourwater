@@ -8,6 +8,7 @@ const NAV_LINKS = [
   { href: "/blog", label: "Investigations" },
   { href: "/news", label: "News" },
   { href: "/states", label: "States" },
+  { href: "/toolkit", label: "Toolkit" },
   { href: "/about", label: "About" },
   { href: "/methodology", label: "Methodology" },
   { href: "/action", label: "What Can I Do" },

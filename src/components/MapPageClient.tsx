@@ -18,7 +18,7 @@ export default function MapPageClient() {
     <div
       role="region"
       aria-label="Interactive map of PFAS contamination levels across the United States"
-      className="h-[calc(100vh-60px)] w-full"
+      style={{ width: "100%", height: "calc(100vh - 64px)" }}
     >
       {/* Screen-reader / keyboard alternative: the map is mouse and touch
           interactive only. Anyone using assistive tech can reach the same

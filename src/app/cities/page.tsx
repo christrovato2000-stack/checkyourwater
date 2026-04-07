@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import GradeCard from "@/components/GradeCard";
+import InvestigationRequestForm from "@/components/InvestigationRequestForm";
 import { supabasePublic } from "@/lib/supabase";
 import { formatPopulation, formatRatio } from "@/lib/format";
 import type { Grade } from "@/types/database";
@@ -131,6 +132,20 @@ export default async function CitiesIndexPage() {
           City data is loading. Check back soon.
         </p>
       )}
+
+      <section className="mt-20 border-t border-slate-200 pt-12">
+        <h2 className="font-serif text-3xl font-bold text-slate-900">
+          Don&rsquo;t see your city?
+        </h2>
+        <p className="mt-3 max-w-[720px] font-sans text-base leading-relaxed text-slate-700">
+          If your community isn&rsquo;t covered yet, request an investigation.
+          We review every submission and prioritize by population affected and
+          data severity.
+        </p>
+        <div className="mt-6 max-w-[760px]">
+          <InvestigationRequestForm />
+        </div>
+      </section>
     </main>
   );
 }

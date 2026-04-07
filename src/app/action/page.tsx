@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 
 export const metadata: Metadata = {
   title: "What You Can Do About PFAS in Your Water",
@@ -17,6 +18,24 @@ export default function ActionPage() {
         If PFAS has been detected in your water, here are specific steps you
         can take.
       </p>
+
+      <div className="mt-8 rounded-lg border-l-4 border-blue-600 bg-blue-50 px-5 py-5">
+        <p className="font-sans text-xs font-semibold uppercase tracking-widest text-blue-700">
+          Community action toolkit
+        </p>
+        <p className="mt-2 font-serif text-lg leading-snug text-slate-900">
+          Free letter templates, public records request guides, and a meeting
+          preparation guide for residents responding to PFAS contamination.
+        </p>
+        <p className="mt-3">
+          <Link
+            href="/toolkit"
+            className="inline-flex items-center rounded-md bg-blue-600 px-4 py-2 font-sans text-sm font-semibold text-white hover:bg-blue-700"
+          >
+            Open the toolkit →
+          </Link>
+        </p>
+      </div>
 
       <Section heading="1. Water filters that remove PFAS">
         <p>
