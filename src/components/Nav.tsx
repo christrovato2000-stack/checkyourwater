@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 const NAV_LINKS = [
-  { href: "#", label: "Map" },
+  { href: "/map", label: "Map" },
   { href: "/about", label: "About" },
   { href: "/methodology", label: "Methodology" },
   { href: "/action", label: "What Can I Do" },

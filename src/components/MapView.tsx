@@ -1,0 +1,275 @@
+"use client";
+
+import { useEffect, useRef, useState } from "react";
+import maplibregl, { Map as MlMap, Popup } from "maplibre-gl";
+import "maplibre-gl/dist/maplibre-gl.css";
+
+const GRADES = ["A", "B", "C", "D", "F"] as const;
+type Grade = (typeof GRADES)[number];
+
+const GRADE_COLORS: Record<Grade, string> = {
+  A: "#16a34a",
+  B: "#65a30d",
+  C: "#ca8a04",
+  D: "#ea580c",
+  F: "#dc2626",
+};
+
+const GRADE_LABELS: Record<Grade, string> = {
+  A: "No PFAS detected",
+  B: "Below limits",
+  C: "Approaching limits",
+  D: "Exceeds limits",
+  F: "Severely exceeds",
+};
+
+export default function MapView() {
+  const containerRef = useRef<HTMLDivElement | null>(null);
+  const mapRef = useRef<MlMap | null>(null);
+  const popupRef = useRef<Popup | null>(null);
+  const [activeGrades, setActiveGrades] = useState<Set<Grade>>(
+    new Set(GRADES)
+  );
+  const [ready, setReady] = useState(false);
+
+  // Initialize map once
+  useEffect(() => {
+    if (!containerRef.current || mapRef.current) return;
+
+    const map = new maplibregl.Map({
+      container: containerRef.current,
+      style:
+        "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+      center: [-98.5, 39.8],
+      zoom: 3.6,
+      maxBounds: [
+        [-179, 17],
+        [-65, 72],
+      ],
+      attributionControl: { compact: true },
+    });
+    mapRef.current = map;
+
+    map.addControl(new maplibregl.NavigationControl({}), "top-right");
+
+    map.on("load", () => {
+      map.addSource("systems", {
+        type: "geojson",
+        data: "/data/systems.geojson",
+      });
+
+      map.addLayer({
+        id: "water-systems",
+        type: "circle",
+        source: "systems",
+        paint: {
+          "circle-radius": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            3,
+            1.8,
+            6,
+            3.5,
+            10,
+            8,
+            14,
+            14,
+          ],
+          "circle-color": [
+            "match",
+            ["get", "g"],
+            "A",
+            GRADE_COLORS.A,
+            "B",
+            GRADE_COLORS.B,
+            "C",
+            GRADE_COLORS.C,
+            "D",
+            GRADE_COLORS.D,
+            "F",
+            GRADE_COLORS.F,
+            "#9ca3af",
+          ],
+          "circle-stroke-width": [
+            "interpolate",
+            ["linear"],
+            ["zoom"],
+            3,
+            0,
+            8,
+            1,
+          ],
+          "circle-stroke-color": "#ffffff",
+          "circle-opacity": 0.85,
+        },
+      });
+
+      // Hover cursor
+      map.on("mouseenter", "water-systems", () => {
+        map.getCanvas().style.cursor = "pointer";
+      });
+      map.on("mouseleave", "water-systems", () => {
+        map.getCanvas().style.cursor = "";
+      });
+
+      // Click popup
+      map.on("click", "water-systems", (e) => {
+        const f = e.features?.[0];
+        if (!f) return;
+        const p = f.properties as Record<string, string | number | null>;
+        const coords = (f.geometry as GeoJSON.Point).coordinates as [
+          number,
+          number,
+        ];
+        const grade = (p.g as Grade) || "?";
+        const color =
+          (GRADE_COLORS as Record<string, string>)[grade] || "#9ca3af";
+        const ratio = p.r != null ? Number(p.r).toFixed(2) : null;
+        const pop =
+          p.p != null ? Number(p.p).toLocaleString() : "Unknown";
+        const city = p.c ? `${p.c}, ${p.s ?? ""}` : (p.s ?? "");
+        const html = `
+          <div class="font-sans text-slate-900" style="min-width:200px;max-width:260px">
+            <div class="font-serif text-base font-semibold leading-tight">${escapeHtml(
+              String(p.n ?? "")
+            )}</div>
+            <div class="text-xs text-slate-500 mt-0.5">${escapeHtml(
+              String(city)
+            )}</div>
+            <div class="mt-2 flex items-center gap-2">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:9999px;background:${color};color:#fff;font-weight:700;font-size:14px">${grade}</span>
+              <span class="text-xs text-slate-600">${
+                p.w ? `${escapeHtml(String(p.w))}${ratio ? ` &middot; ${ratio}× MCL` : ""}` : "No PFAS detected"
+              }</span>
+            </div>
+            <div class="mt-1 text-xs text-slate-500">Population: ${pop}</div>
+            <a href="/system/${encodeURIComponent(
+              String(p.id ?? "")
+            )}" class="mt-2 inline-block text-xs font-medium text-blue-600 hover:underline">View details →</a>
+          </div>
+        `;
+        if (popupRef.current) popupRef.current.remove();
+        popupRef.current = new maplibregl.Popup({
+          closeButton: true,
+          maxWidth: "280px",
+        })
+          .setLngLat(coords)
+          .setHTML(html)
+          .addTo(map);
+      });
+
+      setReady(true);
+    });
+
+    return () => {
+      popupRef.current?.remove();
+      map.remove();
+      mapRef.current = null;
+    };
+  }, []);
+
+  // Apply grade filter when activeGrades changes
+  useEffect(() => {
+    const map = mapRef.current;
+    if (!map || !ready) return;
+    const arr = Array.from(activeGrades);
+    if (arr.length === 0) {
+      map.setFilter("water-systems", ["==", ["get", "g"], "__none__"]);
+    } else {
+      map.setFilter("water-systems", [
+        "in",
+        ["get", "g"],
+        ["literal", arr],
+      ]);
+    }
+  }, [activeGrades, ready]);
+
+  function toggleGrade(g: Grade) {
+    setActiveGrades((prev) => {
+      const next = new Set(prev);
+      if (next.has(g)) next.delete(g);
+      else next.add(g);
+      return next;
+    });
+  }
+
+  function showAll() {
+    setActiveGrades(new Set(GRADES));
+  }
+  function showExceedances() {
+    setActiveGrades(new Set(["D", "F"] as Grade[]));
+  }
+
+  return (
+    <div className="relative h-full w-full">
+      <div ref={containerRef} className="absolute inset-0" />
+
+      {/* Filter toolbar */}
+      <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 flex justify-center px-3 pt-3">
+        <div className="pointer-events-auto flex flex-wrap items-center gap-2 rounded-full border border-slate-200 bg-white/95 px-3 py-2 shadow-sm backdrop-blur">
+          <span className="hidden text-xs font-medium text-slate-500 sm:inline">
+            Filter:
+          </span>
+          {GRADES.map((g) => {
+            const on = activeGrades.has(g);
+            return (
+              <button
+                key={g}
+                onClick={() => toggleGrade(g)}
+                aria-pressed={on}
+                style={{
+                  backgroundColor: on ? GRADE_COLORS[g] : "transparent",
+                  borderColor: GRADE_COLORS[g],
+                  color: on ? "#fff" : GRADE_COLORS[g],
+                }}
+                className="h-7 w-7 rounded-full border-2 text-xs font-bold transition-opacity hover:opacity-80"
+              >
+                {g}
+              </button>
+            );
+          })}
+          <div className="mx-1 h-5 w-px bg-slate-200" />
+          <button
+            onClick={showAll}
+            className="rounded-full px-2 py-1 text-xs font-medium text-slate-600 hover:bg-slate-100"
+          >
+            All
+          </button>
+          <button
+            onClick={showExceedances}
+            className="rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100"
+          >
+            Exceedances only
+          </button>
+        </div>
+      </div>
+
+      {/* Legend */}
+      <div className="pointer-events-auto absolute bottom-4 right-4 z-10 max-w-[200px] rounded-lg border border-slate-200 bg-white/95 p-3 text-xs shadow-md backdrop-blur">
+        <div className="mb-2 font-semibold text-slate-900">Grade</div>
+        <ul className="space-y-1">
+          {GRADES.map((g) => (
+            <li key={g} className="flex items-center gap-2">
+              <span
+                className="inline-block h-3 w-3 rounded-full"
+                style={{ backgroundColor: GRADE_COLORS[g] }}
+              />
+              <span className="font-mono font-bold text-slate-700">{g}</span>
+              <span className="text-slate-600">{GRADE_LABELS[g]}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  );
+}
+
+function escapeHtml(s: string): string {
+  return s
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
+}
