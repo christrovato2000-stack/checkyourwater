@@ -21,7 +21,7 @@ const SECTIONS = [
   { id: "contact", label: "Contact" },
 ];
 
-const PREVIEW_PWSID = "WV3302813"; // Lubeck PSD
+const PREVIEW_PWSID = "WV3305404"; // Lubeck PSD (Parkersburg WV, grade F)
 
 interface GradeCount {
   grade: string;
