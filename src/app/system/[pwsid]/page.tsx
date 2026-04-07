@@ -14,6 +14,7 @@ import {
   formatPPT,
 } from "@/lib/format";
 import { GRADE_THRESHOLDS } from "@/lib/constants";
+import { getStateByCode } from "@/lib/states";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -68,6 +69,7 @@ export default async function SystemPage({
   const exceedanceCount = system.compounds.filter(
     (c) => (c.mcl_ratio ?? 0) >= 1
   ).length;
+  const stateInfo = getStateByCode(system.state_code);
 
   return (
     <article className="mx-auto max-w-[900px] px-4 py-12 sm:px-6 sm:py-16">
@@ -238,6 +240,21 @@ export default async function SystemPage({
           audience="customers"
         />
       </section>
+
+      {/* STATE CONTEXT LINK */}
+      {stateInfo && (
+        <section className="mt-12 rounded-lg border border-slate-200 bg-slate-50 p-5">
+          <p className="font-sans text-sm text-slate-700">
+            Want the statewide picture?{" "}
+            <Link
+              href={`/state/${stateInfo.slug}`}
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              See all PFAS results in {stateInfo.name} →
+            </Link>
+          </p>
+        </section>
+      )}
 
       {/* DATA SOURCE FOOTER */}
       <section className="mt-16 rounded-lg border border-slate-200 bg-slate-50 p-6">

@@ -127,6 +127,18 @@ export default async function PressPage() {
             government agency, any water utility, or any chemical
             manufacturer. The project receives no industry funding.
           </p>
+          <p>
+            For reporters working statewide stories we also publish{" "}
+            <Link
+              href="/states"
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              per-state pages
+            </Link>{" "}
+            aggregating EPA UCMR 5 testing results, a ranked list of the
+            worst-affected water systems in each state, and a summary of
+            that state&rsquo;s PFAS regulatory response.
+          </p>
         </div>
       </section>
 

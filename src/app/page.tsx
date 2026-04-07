@@ -213,12 +213,18 @@ export default async function HomePage() {
         )}
 
         {cities.length > 0 && (
-          <div className="mt-10">
+          <div className="mt-10 flex flex-wrap gap-6">
             <Link
               href="/cities"
               className="font-sans text-base font-semibold text-blue-600 hover:underline"
             >
               See all 20 monitored cities →
+            </Link>
+            <Link
+              href="/states"
+              className="font-sans text-base font-semibold text-blue-600 hover:underline"
+            >
+              Browse PFAS results by state →
             </Link>
           </div>
         )}

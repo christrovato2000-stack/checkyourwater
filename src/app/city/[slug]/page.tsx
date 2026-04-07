@@ -14,6 +14,7 @@ import {
   formatPopulation,
 } from "@/lib/format";
 import { supabasePublic } from "@/lib/supabase";
+import { getStateByCode } from "@/lib/states";
 import { getPostByCitySlug } from "@/lib/blog";
 import {
   getNewsForCity,
@@ -101,6 +102,7 @@ export default async function CityPage({
 
   const investigation = getPostByCitySlug(slug);
   const cityNews = await getNewsForCity(slug);
+  const stateInfo = getStateByCode(city.state_code);
 
   const gradeIsBad = city.grade === "D" || city.grade === "F";
 
@@ -378,6 +380,16 @@ export default async function CityPage({
           <p className="mt-4 font-serif text-lg leading-relaxed text-slate-800">
             {city.city_name} is part of our launch coverage of communities
             where EPA UCMR 5 testing has detected PFAS in drinking water.
+          </p>
+        )}
+        {stateInfo && (
+          <p className="mt-4 font-sans text-base">
+            <Link
+              href={`/state/${stateInfo.slug}`}
+              className="font-semibold text-blue-700 hover:underline"
+            >
+              See all PFAS results in {city.state_name} →
+            </Link>
           </p>
         )}
       </section>
