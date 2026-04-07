@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import CityMapImage from "@/components/CityMapImage";
 import GradeCard from "@/components/GradeCard";
 import ContaminantRow from "@/components/ContaminantRow";
 import ActionsByGrade from "@/components/ActionsByGrade";
@@ -124,6 +125,13 @@ export default async function CityPage({
         <p className="mt-4 font-sans text-xs text-slate-500">
           Source: EPA UCMR 5 · Samples collected 2023&ndash;2026
         </p>
+
+        <CityMapImage
+          slug={slug}
+          cityName={city.city_name}
+          stateName={city.state_name}
+          grade={city.grade}
+        />
       </header>
 
       {/* SECTION 2 — CONTAMINATION SUMMARY */}

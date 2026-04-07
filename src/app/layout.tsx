@@ -31,14 +31,14 @@ export const metadata: Metadata = {
     title: "Check Your Water | Free PFAS Contamination Data",
     description:
       "Find out if PFAS 'forever chemicals' are in your drinking water. Free tool using EPA data. Enter your zip code.",
-    images: ["/og-default.png"],
+    images: ["/api/og"],
   },
   twitter: {
     card: "summary_large_image",
     title: "Check Your Water | Free PFAS Contamination Data",
     description:
       "Find out if PFAS 'forever chemicals' are in your drinking water. Free tool using EPA data.",
-    images: ["/og-default.png"],
+    images: ["/api/og"],
   },
   robots: { index: true, follow: true },
 };
