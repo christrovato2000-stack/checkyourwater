@@ -32,6 +32,7 @@ export default function MapView() {
     new Set(GRADES)
   );
   const [ready, setReady] = useState(false);
+  const [locating, setLocating] = useState(false);
 
   // Initialize map once
   useEffect(() => {
@@ -39,34 +40,7 @@ export default function MapView() {
 
     const map = new maplibregl.Map({
       container: containerRef.current,
-      // Inline raster style with CARTO Positron tiles. Avoids depending on
-      // a remote style.json (which was rendering blank in some browsers).
-      style: {
-        version: 8,
-        sources: {
-          "carto-positron": {
-            type: "raster",
-            tiles: [
-              "https://a.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
-              "https://b.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
-              "https://c.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
-              "https://d.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
-            ],
-            tileSize: 256,
-            attribution:
-              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-          },
-        },
-        layers: [
-          {
-            id: "carto-positron",
-            type: "raster",
-            source: "carto-positron",
-            minzoom: 0,
-            maxzoom: 19,
-          },
-        ],
-      },
+      style: "https://tiles.openfreemap.org/styles/positron",
       center: [-98.5, 39.8],
       zoom: 3.6,
       maxBounds: [
@@ -234,9 +208,44 @@ export default function MapView() {
     setActiveGrades(new Set(["D", "F"] as Grade[]));
   }
 
+  function findMyLocation() {
+    const map = mapRef.current;
+    if (!map) return;
+    if (typeof navigator === "undefined" || !navigator.geolocation) {
+      alert("Geolocation is not supported by your browser.");
+      return;
+    }
+    setLocating(true);
+    navigator.geolocation.getCurrentPosition(
+      (pos) => {
+        setLocating(false);
+        map.flyTo({
+          center: [pos.coords.longitude, pos.coords.latitude],
+          zoom: 10,
+          essential: true,
+        });
+      },
+      (err) => {
+        setLocating(false);
+        alert(
+          err.code === err.PERMISSION_DENIED
+            ? "Location permission denied. Enable it in your browser settings to use this feature."
+            : "Could not determine your location."
+        );
+      },
+      { enableHighAccuracy: true, timeout: 10000, maximumAge: 60000 }
+    );
+  }
+
   return (
-    <div className="relative h-full w-full">
-      <div ref={containerRef} className="absolute inset-0" />
+    <div
+      className="relative"
+      style={{ width: "100%", height: "calc(100vh - 64px)" }}
+    >
+      <div
+        ref={containerRef}
+        style={{ position: "absolute", inset: 0, width: "100%", height: "100%" }}
+      />
 
       {/* Filter toolbar */}
       <div className="pointer-events-none absolute left-0 right-0 top-0 z-10 flex justify-center px-3 pt-3">
@@ -274,6 +283,33 @@ export default function MapView() {
             className="rounded-full bg-red-50 px-2 py-1 text-xs font-medium text-red-700 hover:bg-red-100"
           >
             Exceedances only
+          </button>
+          <div className="mx-1 h-5 w-px bg-slate-200" />
+          <button
+            onClick={findMyLocation}
+            disabled={locating}
+            aria-label="Find my location"
+            className="flex items-center gap-1 rounded-full bg-blue-600 px-2 py-1 text-xs font-medium text-white hover:bg-blue-700 disabled:opacity-60"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="12"
+              height="12"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="3" />
+              <path d="M12 2v3" />
+              <path d="M12 19v3" />
+              <path d="M2 12h3" />
+              <path d="M19 12h3" />
+            </svg>
+            {locating ? "Locating…" : "Find me"}
           </button>
         </div>
       </div>
