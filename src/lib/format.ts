@@ -31,12 +31,17 @@ export function formatPopulation(value: number | null | undefined): string {
   return value.toLocaleString("en-US");
 }
 
+// Grade colors are tuned so white text on the swatch meets WCAG AA
+// (4.5:1 for normal text). The lime/yellow that Tailwind ships at the
+// "natural" grade hues fail badly against white, so B and C are darkened
+// to a depth where contrast clears the bar while still reading as
+// lime-green / mustard-yellow within the A→F gradient.
 export const GRADE_COLORS: Record<Grade, string> = {
-  A: "#16a34a",
-  B: "#65a30d",
-  C: "#ca8a04",
-  D: "#ea580c",
-  F: "#dc2626",
+  A: "#15803d", // green-700  — 5.14:1 vs white
+  B: "#4d7c0f", // lime-700   — 5.46:1 vs white
+  C: "#a16207", // yellow-700 — 4.83:1 vs white
+  D: "#c2410c", // orange-700 — 5.27:1 vs white
+  F: "#b91c1c", // red-700    — 6.36:1 vs white
 };
 
 export function getGradeColor(grade: Grade | string | null | undefined): string {

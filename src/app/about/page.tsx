@@ -134,6 +134,33 @@ export default function AboutPage() {
         </p>
       </Section>
 
+      <Section heading="Accessibility">
+        <p>
+          CheckYourWater.org is designed to be accessible to all users. We
+          follow{" "}
+          <a
+            href="https://www.w3.org/TR/WCAG21/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-600 hover:underline"
+          >
+            WCAG 2.1 AA
+          </a>{" "}
+          guidelines: every page is keyboard navigable, the zip-code search
+          works with screen readers, grade letters convey meaning alongside
+          color, and the national map&rsquo;s data is also available through
+          the zip-code search for users who can&rsquo;t interact with the map.
+          If you encounter an accessibility issue, please email us at{" "}
+          <a
+            href="mailto:hello@checkyourwater.org"
+            className="text-blue-600 hover:underline"
+          >
+            hello@checkyourwater.org
+          </a>
+          .
+        </p>
+      </Section>
+
       <Section heading="Contact">
         <ul className="space-y-2">
           <li>

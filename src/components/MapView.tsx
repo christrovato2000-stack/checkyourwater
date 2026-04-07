@@ -7,12 +7,13 @@ import "maplibre-gl/dist/maplibre-gl.css";
 const GRADES = ["A", "B", "C", "D", "F"] as const;
 type Grade = (typeof GRADES)[number];
 
+// Keep in sync with src/lib/format.ts — WCAG AA against white text.
 const GRADE_COLORS: Record<Grade, string> = {
-  A: "#16a34a",
-  B: "#65a30d",
-  C: "#ca8a04",
-  D: "#ea580c",
-  F: "#dc2626",
+  A: "#15803d",
+  B: "#4d7c0f",
+  C: "#a16207",
+  D: "#c2410c",
+  F: "#b91c1c",
 };
 
 const GRADE_LABELS: Record<Grade, string> = {

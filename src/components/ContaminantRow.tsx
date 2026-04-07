@@ -32,19 +32,21 @@ export default function ContaminantRow({
 
   if (hasMcl) {
     const ratio = mclRatio ?? (mcl ? conc / mcl : 0);
+    // Colors are tuned for WCAG AA against white (these values double as
+    // status text colors on a white card background).
     if (ratio >= 1) {
       status = "over";
-      fillColor = "#dc2626";
+      fillColor = "#b91c1c";
       icon = "✗";
       statusText = formatRatio(ratio);
     } else if (ratio >= 0.5) {
       status = "approaching";
-      fillColor = "#ea580c";
+      fillColor = "#c2410c";
       icon = "⚠";
       statusText = formatRatio(ratio);
     } else {
       status = "under";
-      fillColor = "#16a34a";
+      fillColor = "#15803d";
       icon = "✓";
       statusText = "Below federal limit";
     }

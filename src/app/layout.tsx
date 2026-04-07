@@ -3,6 +3,7 @@ import { Source_Serif_4, Source_Sans_3 } from "next/font/google";
 import "./globals.css";
 import Nav from "@/components/Nav";
 import Footer from "@/components/Footer";
+import Analytics from "@/components/Analytics";
 
 const serif = Source_Serif_4({
   variable: "--font-serif",
@@ -52,11 +53,21 @@ export default function RootLayout({
       className={`${serif.variable} ${sans.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col bg-white text-slate-900">
+        {/* Skip-to-content link, visible on keyboard focus only */}
+        <a
+          href="#main-content"
+          className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-blue-600 focus:px-4 focus:py-2 focus:font-sans focus:text-sm focus:font-semibold focus:text-white focus:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-300"
+        >
+          Skip to main content
+        </a>
         {/* Editorial top accent rule */}
         <div aria-hidden className="h-0.5 w-full bg-blue-600" />
         <Nav />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">
+          {children}
+        </main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

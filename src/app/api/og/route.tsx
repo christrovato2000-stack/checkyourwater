@@ -3,12 +3,13 @@ import { supabasePublic } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
+// Keep in sync with src/lib/format.ts — WCAG AA against white text.
 const GRADE_COLORS: Record<string, string> = {
-  A: "#16a34a",
-  B: "#65a30d",
-  C: "#ca8a04",
-  D: "#ea580c",
-  F: "#dc2626",
+  A: "#15803d",
+  B: "#4d7c0f",
+  C: "#a16207",
+  D: "#c2410c",
+  F: "#b91c1c",
 };
 
 const GRADE_SUMMARIES: Record<string, string> = {

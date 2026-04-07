@@ -1,0 +1,53 @@
+name: Weekly Database Backup
+
+# Runs pg_dump against the production Supabase database every Monday and
+# stores the dump as a 30-day retained workflow artifact. Manual runs are
+# allowed via workflow_dispatch.
+#
+# Setup (one-time, by Chris):
+#   1. Supabase Dashboard → Settings → Database → Connection string (URI).
+#      Use the "Session pooler" or "Direct connection" URI — NOT the
+#      transaction pooler, which doesn't support pg_dump.
+#   2. GitHub repo → Settings → Secrets and variables → Actions → New
+#      repository secret. Name: DATABASE_URL. Value: the URI from step 1.
+#   3. Push this workflow file. The first scheduled run is the next
+#      Monday at 06:00 UTC. To trigger immediately: Actions tab →
+#      "Weekly Database Backup" → Run workflow.
+
+on:
+  schedule:
+    - cron: "0 6 * * 1" # Every Monday at 06:00 UTC
+  workflow_dispatch:
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install PostgreSQL 16 client
+        run: |
+          sudo sh -c 'echo "deb http://apt.postgresql.org/pub/repos/apt $(lsb_release -cs)-pgdg main" > /etc/apt/sources.list.d/pgdg.list'
+          curl -fsSL https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo gpg --dearmor -o /etc/apt/trusted.gpg.d/postgresql.gpg
+          sudo apt-get update
+          sudo apt-get install -y postgresql-client-16
+
+      - name: Run pg_dump
+        env:
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+        run: |
+          if [ -z "$DATABASE_URL" ]; then
+            echo "::error::DATABASE_URL secret is not set. See workflow file header for setup instructions."
+            exit 1
+          fi
+          pg_dump "$DATABASE_URL" \
+            --format=custom \
+            --no-owner \
+            --no-privileges \
+            --file=backup.dump
+          ls -lh backup.dump
+
+      - name: Upload backup artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: supabase-backup-${{ github.run_number }}
+          path: backup.dump
+          retention-days: 30
