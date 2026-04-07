@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import ZipSearch from "@/components/ZipSearch";
+import NotifySignup from "@/components/NotifySignup";
 import {
   getAllPosts,
   getPostBySlug,
@@ -9,6 +10,11 @@ import {
   categoryLabel,
   formatPostDate,
 } from "@/lib/blog";
+import {
+  getNewsForCity,
+  categoryLabel as newsCategoryLabel,
+  formatNewsDate,
+} from "@/lib/news";
 
 type Params = { slug: string };
 
@@ -66,6 +72,7 @@ export default async function ArticlePage({
 
   const related = getRelatedPosts(slug, 3);
   const { frontmatter: fm, bodyHtml, readMinutes, toc } = post;
+  const relatedNews = fm.city_slug ? await getNewsForCity(fm.city_slug) : [];
   const url = `https://checkyourwater.org/blog/${slug}`;
 
   const jsonLd = {
@@ -207,6 +214,50 @@ export default async function ArticlePage({
             </div>
           </section>
 
+          {/* Related news (if this post is tied to a city) */}
+          {relatedNews.length > 0 && (
+            <section className="mt-12">
+              <h2 className="font-serif text-2xl font-semibold text-slate-900">
+                Recent news on {fm.city_slug ? cityLabelFromSlug(fm.city_slug) : "this story"}
+              </h2>
+              <ul className="mt-5 space-y-4">
+                {relatedNews.slice(0, 4).map((n) => (
+                  <li
+                    key={n.id}
+                    className="rounded-lg border border-slate-200 bg-white p-4"
+                  >
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                      <span className="rounded-full bg-blue-50 px-2.5 py-0.5 font-sans text-xs font-semibold uppercase tracking-wide text-blue-700">
+                        {newsCategoryLabel(n.category)}
+                      </span>
+                      <span className="font-sans text-xs text-slate-500">
+                        {n.source_name} · {formatNewsDate(n.published_date)}
+                      </span>
+                    </div>
+                    <p className="mt-2 font-serif text-base font-semibold text-slate-900">
+                      <a
+                        href={n.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-blue-700 hover:underline"
+                      >
+                        {n.title}
+                      </a>
+                    </p>
+                    <p className="mt-1 font-sans text-sm text-slate-600">
+                      {n.summary}
+                    </p>
+                  </li>
+                ))}
+              </ul>
+            </section>
+          )}
+
+          {/* Notification signup */}
+          <section className="mt-12">
+            <NotifySignup />
+          </section>
+
           {/* Related */}
           {related.length > 0 && (
             <section className="mt-16 border-t border-slate-200 pt-10">
@@ -262,4 +313,14 @@ export default async function ArticlePage({
       </div>
     </>
   );
+}
+
+function cityLabelFromSlug(slug: string): string {
+  const m = slug.match(/^(.+)-([a-z]{2})$/);
+  if (!m) return slug;
+  const city = m[1]
+    .split("-")
+    .map((w) => w.charAt(0).toUpperCase() + w.slice(1))
+    .join(" ");
+  return `${city}, ${m[2].toUpperCase()}`;
 }

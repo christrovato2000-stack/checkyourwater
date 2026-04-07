@@ -21,7 +21,10 @@
     "data:all": "npm run data:parse-ucmr5 && npm run data:parse-sdwis && npm run data:aggregate && npm run data:grade && npm run data:pubchem && npm run data:seed && npm run data:seed-cities && npm run data:validate",
     "content:generate": "tsx scripts/generate-content.ts",
     "content:validate": "tsx scripts/validate-content.ts",
-    "content:approve": "tsx scripts/approve-content.ts"
+    "content:approve": "tsx scripts/approve-content.ts",
+    "news:seed": "tsx scripts/seed-news.ts",
+    "news:curate": "tsx scripts/curate-news.ts",
+    "notify:send": "tsx scripts/send-notification.ts"
   },
   "dependencies": {
     "@supabase/ssr": "^0.10.0",
@@ -34,6 +37,7 @@
     "next": "16.2.2",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "resend": "^6.10.0",
     "zod": "^4.3.6"
   },
   "devDependencies": {

@@ -110,6 +110,40 @@ export interface Content {
   updated_at?: string;
 }
 
+export type NewsCategory =
+  | "epa-action"
+  | "state-regulation"
+  | "legal"
+  | "research"
+  | "local-coverage"
+  | "industry";
+
+export interface NewsItem {
+  id: string;
+  title: string;
+  url: string;
+  source_name: string;
+  summary: string;
+  category: NewsCategory;
+  published_date: string; // ISO YYYY-MM-DD
+  created_at?: string;
+  featured: boolean;
+  city_slug: string | null;
+  state: string | null;
+  status: string;
+}
+
+export interface EmailSubscriber {
+  id: string;
+  email: string;
+  zip_code: string | null;
+  subscribed_at: string;
+  confirmed: boolean;
+  confirm_token: string;
+  unsubscribe_token: string;
+  unsubscribed_at: string | null;
+}
+
 /** What our zip-search API returns to the web client. */
 export interface SearchResult {
   zip_code: string;

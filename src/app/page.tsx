@@ -2,10 +2,16 @@ import Link from "next/link";
 import ZipSearch from "@/components/ZipSearch";
 import NationalStatsBar from "@/components/NationalStatsBar";
 import GradeCard from "@/components/GradeCard";
+import NotifySignup from "@/components/NotifySignup";
 import { supabasePublic } from "@/lib/supabase";
 import { formatRatio } from "@/lib/format";
 import type { Grade } from "@/types/database";
 import { getAllPosts, categoryLabel, formatPostDate } from "@/lib/blog";
+import {
+  getLatestNews,
+  categoryLabel as newsCategoryLabel,
+  formatNewsDate,
+} from "@/lib/news";
 
 interface CityRow {
   slug: string;
@@ -35,6 +41,7 @@ async function loadLaunchCities(): Promise<CityRow[]> {
 export default async function HomePage() {
   const cities = await loadLaunchCities();
   const latestPosts = getAllPosts().slice(0, 3);
+  const latestNews = await getLatestNews(3);
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -71,6 +78,16 @@ export default async function HomePage() {
             Free tool using EPA data. Covers 10,297 water systems serving most
             Americans.
           </p>
+        </div>
+      </section>
+
+      {/* SECTION 1b: NOTIFY ME (subtle, one-line) */}
+      <section className="border-b border-slate-200 bg-slate-50">
+        <div className="mx-auto max-w-[1200px] px-4 py-8 sm:px-6">
+          <NotifySignup
+            variant="compact"
+            heading="Get notified when new EPA PFAS data is released."
+          />
         </div>
       </section>
 
@@ -249,6 +266,59 @@ export default async function HomePage() {
                       {formatPostDate(p.frontmatter.date)} · {p.readMinutes} min read
                     </p>
                   </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+      )}
+
+      {/* SECTION 7: LATEST PFAS NEWS */}
+      {latestNews.length > 0 && (
+        <section className="border-t border-slate-200">
+          <div className="mx-auto max-w-[1200px] px-4 py-20 sm:px-6">
+            <div className="flex flex-wrap items-end justify-between gap-4">
+              <div>
+                <h2 className="max-w-[720px] font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
+                  Latest PFAS news
+                </h2>
+                <p className="mt-3 max-w-[720px] font-sans text-base text-slate-600">
+                  Curated coverage of regulations, lawsuits, and research.
+                </p>
+              </div>
+              <Link
+                href="/news"
+                className="font-sans text-base font-semibold text-blue-600 hover:underline"
+              >
+                See all news →
+              </Link>
+            </div>
+
+            <ul className="mt-10 grid gap-6 md:grid-cols-3">
+              {latestNews.map((n) => (
+                <li
+                  key={n.id}
+                  className="rounded-lg border border-slate-200 bg-white p-6 transition-colors hover:border-blue-400"
+                >
+                  <span className="rounded-full bg-blue-50 px-3 py-1 font-sans text-xs font-semibold uppercase tracking-wide text-blue-700">
+                    {newsCategoryLabel(n.category)}
+                  </span>
+                  <h3 className="mt-4 font-serif text-xl font-semibold leading-snug text-slate-900">
+                    <a
+                      href={n.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hover:text-blue-700 hover:underline"
+                    >
+                      {n.title}
+                    </a>
+                  </h3>
+                  <p className="mt-3 font-sans text-sm leading-relaxed text-slate-600">
+                    {n.summary}
+                  </p>
+                  <p className="mt-4 font-sans text-xs text-slate-500">
+                    {n.source_name} · {formatNewsDate(n.published_date)}
+                  </p>
                 </li>
               ))}
             </ul>

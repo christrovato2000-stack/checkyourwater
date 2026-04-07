@@ -14,6 +14,11 @@ import {
 } from "@/lib/format";
 import { supabasePublic } from "@/lib/supabase";
 import { getPostByCitySlug } from "@/lib/blog";
+import {
+  getNewsForCity,
+  categoryLabel as newsCategoryLabel,
+  formatNewsDate,
+} from "@/lib/news";
 
 export const revalidate = 86400;
 export const dynamicParams = true;
@@ -94,6 +99,7 @@ export default async function CityPage({
   } = payload;
 
   const investigation = getPostByCitySlug(slug);
+  const cityNews = await getNewsForCity(slug);
 
   const gradeIsBad = city.grade === "D" || city.grade === "F";
 
@@ -300,6 +306,53 @@ export default async function CityPage({
           </div>
         )}
       </section>
+
+      {/* SECTION 4.5: RECENT NEWS */}
+      {cityNews.length > 0 && (
+        <section className="mt-16">
+          <h2 className="font-serif text-3xl font-bold text-slate-900">
+            Recent news on {city.city_name}
+          </h2>
+          <ul className="mt-6 space-y-4">
+            {cityNews.map((n) => (
+              <li
+                key={n.id}
+                className="rounded-lg border border-slate-200 bg-white p-5"
+              >
+                <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+                  <span className="rounded-full bg-blue-50 px-2.5 py-0.5 font-sans text-xs font-semibold uppercase tracking-wide text-blue-700">
+                    {newsCategoryLabel(n.category)}
+                  </span>
+                  <span className="font-sans text-xs text-slate-500">
+                    {n.source_name} · {formatNewsDate(n.published_date)}
+                  </span>
+                </div>
+                <p className="mt-2 font-serif text-lg font-semibold text-slate-900">
+                  <a
+                    href={n.url}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="hover:text-blue-700 hover:underline"
+                  >
+                    {n.title}
+                  </a>
+                </p>
+                <p className="mt-1 font-sans text-sm text-slate-600">
+                  {n.summary}
+                </p>
+              </li>
+            ))}
+          </ul>
+          <p className="mt-4 font-sans text-sm">
+            <Link
+              href="/news"
+              className="font-semibold text-blue-600 hover:underline"
+            >
+              See all PFAS news →
+            </Link>
+          </p>
+        </section>
+      )}
 
       {/* SECTION 5: CONTEXT */}
       <section className="mt-16">
