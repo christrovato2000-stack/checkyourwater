@@ -174,7 +174,7 @@ async function validateCitySummaries(issues: Issue[]) {
   const { data: cities } = await sb
     .from("cities")
     .select("slug, city_name, grade")
-    .eq("launch_wave", 1);
+    .in("launch_wave", [1, 2]);
   const cityMap = new Map((cities ?? []).map((c) => [c.slug as string, c]));
 
   const { data: rows } = await sb

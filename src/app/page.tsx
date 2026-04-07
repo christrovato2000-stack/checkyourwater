@@ -17,10 +17,11 @@ interface CityRow {
 
 async function loadLaunchCities(): Promise<CityRow[]> {
   try {
+    // Show the 10 worst-graded cities across both Wave 1 and Wave 2.
     const { data, error } = await supabasePublic
       .from("cities")
       .select("slug, city_name, state_code, grade, worst_compound, worst_ratio")
-      .eq("launch_wave", 1)
+      .in("launch_wave", [1, 2])
       .order("worst_ratio", { ascending: false, nullsFirst: false })
       .limit(10);
     if (error || !data) return [];
@@ -190,6 +191,17 @@ export default async function HomePage() {
               </li>
             ))}
           </ul>
+        )}
+
+        {cities.length > 0 && (
+          <div className="mt-10">
+            <Link
+              href="/cities"
+              className="font-sans text-base font-semibold text-blue-600 hover:underline"
+            >
+              See all 20 monitored cities →
+            </Link>
+          </div>
         )}
       </section>
     </>

@@ -384,7 +384,7 @@ async function generateCitySummaries(): Promise<void> {
     .select(
       "slug, city_name, state_code, state_name, population, grade, primary_pwsid, contamination_source, settlement_status"
     )
-    .eq("launch_wave", 1)
+    .in("launch_wave", [1, 2])
     .order("slug");
   if (error) throw error;
   if (!cities) return;
