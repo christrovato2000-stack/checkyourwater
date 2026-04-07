@@ -94,7 +94,7 @@ export default function ZipSearch() {
             status: "empty",
             message:
               body?.message ??
-              "We don't have water quality data for this zip code. Try a nearby zip code.",
+              "We don't have PFAS testing data for this zip code. This could mean your water system wasn't included in EPA's UCMR 5 testing program (systems serving fewer than 3,300 people are often not tested), or your zip code may not be mapped to a water system in our database.",
           });
           return;
         }
@@ -110,7 +110,7 @@ export default function ZipSearch() {
           setState({
             status: "empty",
             message:
-              "We don't have water quality data for this zip code. Try a nearby zip code.",
+              "We don't have PFAS testing data for this zip code. This could mean your water system wasn't included in EPA's UCMR 5 testing program (systems serving fewer than 3,300 people are often not tested), or your zip code may not be mapped to a water system in our database.",
           });
           return;
         }
@@ -245,18 +245,33 @@ function EmptyState({
   onReset: () => void;
 }) {
   return (
-    <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 text-center">
-      <p className="font-serif text-lg text-slate-900">No data found</p>
-      <p className="mt-2 font-sans text-sm leading-relaxed text-slate-600">
+    <div className="rounded-lg border border-slate-200 bg-slate-50 p-6 text-left sm:p-8">
+      <p className="font-serif text-xl text-slate-900">No data for this zip code</p>
+      <p className="mt-3 font-sans text-sm leading-relaxed text-slate-600">
         {message}
       </p>
-      <button
-        type="button"
-        onClick={onReset}
-        className="mt-4 font-sans text-sm font-medium text-blue-600 hover:underline"
-      >
-        Try a different zip code
-      </button>
+      <p className="mt-3 font-sans text-sm leading-relaxed text-slate-600">
+        Try a nearby zip code, or search for your city on our{" "}
+        <Link href="/cities" className="font-semibold text-blue-600 hover:underline">
+          cities page
+        </Link>
+        .
+      </p>
+      <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-2">
+        <button
+          type="button"
+          onClick={onReset}
+          className="font-sans text-sm font-semibold text-blue-600 hover:underline"
+        >
+          Try a different zip code
+        </button>
+        <Link
+          href="/cities"
+          className="font-sans text-sm font-semibold text-blue-600 hover:underline"
+        >
+          Browse all cities →
+        </Link>
+      </div>
     </div>
   );
 }

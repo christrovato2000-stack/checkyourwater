@@ -74,7 +74,7 @@ export async function lookupZip(zipRaw: string): Promise<LookupOutcome> {
       error: {
         kind: "not_found",
         message:
-          "We don't have water quality data for this zip code. This may be a very small or rural system not yet included in EPA testing. Try a nearby zip code.",
+          "We don't have PFAS testing data for this zip code. This could mean your water system wasn't included in EPA's UCMR 5 testing program (systems serving fewer than 3,300 people are often not tested), or your zip code may not be mapped to a water system in our database.",
       },
     };
   }
@@ -98,7 +98,7 @@ export async function lookupZip(zipRaw: string): Promise<LookupOutcome> {
       error: {
         kind: "not_found",
         message:
-          "We found a zip mapping but no water system records. Try a nearby zip code.",
+          "We found a zip mapping but no water system records for it. Try a nearby zip code, or search for your city on our cities page.",
       },
     };
   }

@@ -1,0 +1,91 @@
+name: Data Refresh
+
+# Manually triggered workflow to refresh UCMR 5 data when EPA publishes a
+# new release (final UCMR 5 release expected fall 2026). Updates the
+# database (detections, water_systems, grades) and re-generates
+# public/data/systems.geojson, then commits the new GeoJSON to main.
+#
+# How to run:
+#   GitHub → Actions → "Data Refresh" → Run workflow →
+#   type "refresh" in the confirm box → Run workflow.
+#
+# After a successful run, also hit the revalidation endpoint to clear the
+# CDN cache on Vercel (see README → "Refreshing the data" for the curl
+# one-liner).
+#
+# Required secrets (already set for other workflows):
+#   - NEXT_PUBLIC_SUPABASE_URL
+#   - SUPABASE_SERVICE_ROLE_KEY
+
+on:
+  workflow_dispatch:
+    inputs:
+      confirm:
+        description: 'Type "refresh" to confirm data refresh'
+        required: true
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    if: github.event.inputs.confirm == 'refresh'
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Download latest UCMR 5 data
+        run: |
+          mkdir -p data
+          # NOTE: This is the EPA UCMR 5 landing page. Update the direct
+          # zip URL when a new release ships — the current link on the
+          # page is e.g. "ucmr-5-occurrence-data.zip".
+          curl --ssl-no-revoke -fL \
+            -o data/ucmr5-latest.zip \
+            "https://www.epa.gov/system/files/other-files/2025-01/ucmr-5-occurrence-data.zip" || {
+              echo "::warning::Download failed. Falling back to existing data/ucmr5-latest.zip if present."
+              test -f data/ucmr5-latest.zip || exit 1
+            }
+
+      - name: Parse, aggregate, grade, seed, generate GeoJSON
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          npx tsx scripts/parse-ucmr5.ts
+          npx tsx scripts/aggregate-detections.ts
+          npx tsx scripts/assign-grades.ts
+          npx tsx scripts/seed-database.ts
+          npx tsx scripts/generate-geojson.ts
+
+      - name: Validate
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: npx tsx scripts/validate.ts
+
+      - name: Commit updated GeoJSON
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add public/data/systems.geojson
+          if git diff --staged --quiet; then
+            echo "No changes to systems.geojson — skipping commit."
+          else
+            git commit -m "Data refresh: $(date -u +%Y-%m-%d)"
+            git push
+          fi
+
+      - name: Reminder — revalidate Vercel cache
+        run: |
+          echo "::notice::Data refresh complete. Next, invalidate the Vercel cache:"
+          echo "::notice::curl -X POST \"https://checkyourwater.org/api/revalidate?secret=\$REVALIDATION_SECRET&tag=city-data\""

@@ -184,7 +184,7 @@ export default function MethodologyPage() {
         <p>
           The complete grading algorithm is available on{" "}
           <a
-            href="https://github.com/checkyourwater/checkyourwater"
+            href="https://github.com/christrovato2000-stack/checkyourwater"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"

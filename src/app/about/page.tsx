@@ -122,7 +122,7 @@ export default function AboutPage() {
         <p>
           The complete source code for CheckYourWater is available on{" "}
           <a
-            href="https://github.com/checkyourwater/checkyourwater"
+            href="https://github.com/christrovato2000-stack/checkyourwater"
             target="_blank"
             rel="noopener noreferrer"
             className="text-blue-600 hover:underline"
