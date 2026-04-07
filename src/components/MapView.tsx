@@ -39,8 +39,34 @@ export default function MapView() {
 
     const map = new maplibregl.Map({
       container: containerRef.current,
-      style:
-        "https://basemaps.cartocdn.com/gl/positron-gl-style/style.json",
+      // Inline raster style with CARTO Positron tiles. Avoids depending on
+      // a remote style.json (which was rendering blank in some browsers).
+      style: {
+        version: 8,
+        sources: {
+          "carto-positron": {
+            type: "raster",
+            tiles: [
+              "https://a.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
+              "https://b.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
+              "https://c.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
+              "https://d.basemaps.cartocdn.com/rastertiles/positron/{z}/{x}/{y}@2x.png",
+            ],
+            tileSize: 256,
+            attribution:
+              '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+          },
+        },
+        layers: [
+          {
+            id: "carto-positron",
+            type: "raster",
+            source: "carto-positron",
+            minzoom: 0,
+            maxzoom: 19,
+          },
+        ],
+      },
       center: [-98.5, 39.8],
       zoom: 3.6,
       maxBounds: [
@@ -53,7 +79,12 @@ export default function MapView() {
 
     map.addControl(new maplibregl.NavigationControl({}), "top-right");
 
+    // Force a resize after mount in case the container had 0 dimensions
+    // when the map was constructed (can happen with dynamic imports).
+    const resizeRaf = requestAnimationFrame(() => map.resize());
+
     map.on("load", () => {
+      map.resize();
       map.addSource("systems", {
         type: "geojson",
         data: "/data/systems.geojson",
@@ -164,6 +195,7 @@ export default function MapView() {
     });
 
     return () => {
+      cancelAnimationFrame(resizeRaf);
       popupRef.current?.remove();
       map.remove();
       mapRef.current = null;
