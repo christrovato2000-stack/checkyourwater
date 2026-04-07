@@ -6,21 +6,40 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "data:inspect": "tsx scripts/inspect-ucmr5.ts",
+    "data:parse-ucmr5": "tsx scripts/parse-ucmr5.ts",
+    "data:parse-sdwis": "tsx scripts/parse-sdwis.ts",
+    "data:aggregate": "tsx scripts/aggregate-detections.ts",
+    "data:grade": "tsx scripts/assign-grades.ts",
+    "data:pubchem": "tsx scripts/fetch-pubchem.ts",
+    "data:seed": "tsx scripts/seed-database.ts",
+    "data:seed-cities": "tsx scripts/seed-cities.ts",
+    "data:validate": "tsx scripts/validate.ts",
+    "data:all": "npm run data:parse-ucmr5 && npm run data:parse-sdwis && npm run data:aggregate && npm run data:grade && npm run data:pubchem && npm run data:seed && npm run data:seed-cities && npm run data:validate",
+    "content:generate": "tsx scripts/generate-content.ts",
+    "content:validate": "tsx scripts/validate-content.ts",
+    "content:approve": "tsx scripts/approve-content.ts"
   },
   "dependencies": {
+    "@supabase/ssr": "^0.10.0",
+    "@supabase/supabase-js": "^2.101.1",
+    "csv-parse": "^6.2.1",
+    "dotenv": "^17.4.1",
     "next": "16.2.2",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
+    "@types/node": "^20.19.39",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.2",
     "tailwindcss": "^4",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }
