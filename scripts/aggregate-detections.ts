@@ -3,7 +3,7 @@
  *
  * For each pair we compute:
  *   - sample_count, detection_count
- *   - avg/min/max concentration (over DETECTS only — non-detects are
+ *   - avg/min/max concentration (over DETECTS only; non-detects are
  *     treated as zero / not contributing to the mean per EPA convention
  *     for occurrence summaries; we provide max & detection_count so the
  *     consumer can interpret the average)

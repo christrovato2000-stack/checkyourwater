@@ -1,12 +1,12 @@
 /**
- * Mission 10 · Part 1 — National zip-code search coverage test.
+ * Mission 10 · Part 1: National zip-code search coverage test.
  *
  * Picks 20 zip codes from across the country (NOT our 20 launch cities) and
  * runs each one through the same lookup logic the /api/search route uses,
  * then reports hit/miss and a coverage summary.
  *
  * This validates that CheckYourWater works nationally, not just for the
- * curated launch cities — any zip with a mapping will return useful
+ * curated launch cities. Any zip with a mapping will return useful
  * results through the existing search flow.
  *
  * Run: npx tsx scripts/test-national-search.ts
@@ -134,13 +134,13 @@ async function lookupZip(zip: string): Promise<
 }
 
 function pad(v: string | number | null | undefined, width: number): string {
-  const s = v === null || v === undefined ? "—" : String(v);
+  const s = v === null || v === undefined ? "-" : String(v);
   if (s.length >= width) return s.slice(0, width);
   return s + " ".repeat(width - s.length);
 }
 
 function fmtPop(n: number | null): string {
-  if (n === null) return "—";
+  if (n === null) return "-";
   if (n >= 1_000_000) return (n / 1_000_000).toFixed(1) + "M";
   if (n >= 1_000) return (n / 1_000).toFixed(0) + "k";
   return String(n);
@@ -185,10 +185,10 @@ async function main(): Promise<void> {
     } else {
       misses.push({ zip: test.zip, label: test.label, reason: result.reason });
       console.log(
-        `${pad(test.zip, 6)}| ${pad(test.label, 22)}| ${pad("—", 11)}| ${pad(
-          "—",
+        `${pad(test.zip, 6)}| ${pad(test.label, 22)}| ${pad("-", 11)}| ${pad(
+          "-",
           28
-        )}| ${pad("—", 5)}| ${pad("—", 4)}| ${pad("—", 7)}| GAP: ${result.reason}`
+        )}| ${pad("-", 5)}| ${pad("-", 4)}| ${pad("-", 7)}| GAP: ${result.reason}`
       );
     }
   }
@@ -206,11 +206,11 @@ async function main(): Promise<void> {
     console.log();
     console.log("Gaps (these zips have no mapping in zip_to_water_system):");
     for (const m of misses) {
-      console.log(`  · ${m.zip} (${m.label}) — ${m.reason}`);
+      console.log(`  · ${m.zip} (${m.label}): ${m.reason}`);
     }
     console.log();
     console.log(
-      "Note: gaps are expected for some zips — either the zip serves a water\n" +
+      "Note: gaps are expected for some zips. Either the zip serves a water\n" +
         "system smaller than UCMR 5's ~3,300-person threshold, or the SDWIS\n" +
         "service-area crosswalk doesn't reach every residential zip. These\n" +
         "users will see the improved 'no data' message with a link to /cities."
@@ -235,7 +235,7 @@ async function main(): Promise<void> {
     if (payload) {
       console.log(
         `loadSystem(${nonLaunchHit.pwsid}) → ${payload.system.pws_name} ` +
-          `(grade ${payload.system.grade ?? "—"}, ${payload.fullCompoundTable.length} compounds in full table)`
+          `(grade ${payload.system.grade ?? "-"}, ${payload.fullCompoundTable.length} compounds in full table)`
       );
       console.log(
         `/system/${nonLaunchHit.pwsid} will render on first visit via ISR ` +
@@ -243,14 +243,14 @@ async function main(): Promise<void> {
       );
     } else {
       console.log(
-        `FAILED: loadSystem(${nonLaunchHit.pwsid}) returned null — ` +
+        `FAILED: loadSystem(${nonLaunchHit.pwsid}) returned null. ` +
           `system page would 404 for this PWSID.`
       );
     }
   }
 
   console.log();
-  // Non-zero exit only if EVERY zip missed — any partial coverage is fine.
+  // Non-zero exit only if EVERY zip missed. Any partial coverage is fine.
   if (hits.length === 0) process.exit(1);
 }
 

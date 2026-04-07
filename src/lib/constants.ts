@@ -1,5 +1,5 @@
 /**
- * checkyourwater.org — application constants
+ * checkyourwater.org application constants
  *
  * ALL CONCENTRATIONS ARE IN PARTS PER TRILLION (ppt = ng/L).
  * The UCMR 5 dataset reports in µg/L. Multiply by 1000 to convert to ppt.
@@ -84,11 +84,11 @@ export interface PfasCompound {
 
 /**
  * The 29 PFAS compounds measured under UCMR 5.
- * Lithium (CAS 7439-93-2) is the 30th UCMR 5 analyte and is NOT a PFAS —
- * we deliberately omit it from this table. Filter it out when parsing.
+ * Lithium (CAS 7439-93-2) is the 30th UCMR 5 analyte and is NOT a PFAS,
+ * so we deliberately omit it from this table. Filter it out when parsing.
  *
  * References:
- *  - 40 CFR 141.40(a)(3) — Table 1 to Paragraph (a)(3) (UCMR 5 analyte list)
+ *  - 40 CFR 141.40(a)(3), Table 1 to Paragraph (a)(3) (UCMR 5 analyte list)
  *  - EPA UCMR 5 Analytical Methods fact sheet (EPA 815-F-21-004)
  */
 export const PFAS_COMPOUNDS: PfasCompound[] = [
@@ -122,7 +122,7 @@ export const PFAS_COMPOUNDS: PfasCompound[] = [
     cas: "13252-13-6",
     chainLength: "replacement (GenX)",
     mclPpt: 10.0,
-    mclStatus: "Regulated — EPA NPDWR (April 2024)",
+    mclStatus: "Regulated by EPA NPDWR (April 2024)",
   },
   {
     abbrev: "ADONA",
@@ -212,7 +212,7 @@ export const PFAS_COMPOUNDS: PfasCompound[] = [
     cas: "335-67-1",
     chainLength: "long (C8)",
     mclPpt: 4.0,
-    mclStatus: "Regulated — EPA NPDWR (April 2024)",
+    mclStatus: "Regulated by EPA NPDWR (April 2024)",
   },
   {
     abbrev: "PFNA",
@@ -221,7 +221,7 @@ export const PFAS_COMPOUNDS: PfasCompound[] = [
     cas: "375-95-1",
     chainLength: "long (C9)",
     mclPpt: 10.0,
-    mclStatus: "Regulated — EPA NPDWR (April 2024)",
+    mclStatus: "Regulated by EPA NPDWR (April 2024)",
   },
   {
     abbrev: "PFDA",
@@ -293,7 +293,7 @@ export const PFAS_COMPOUNDS: PfasCompound[] = [
     cas: "355-46-4",
     chainLength: "short (C6)",
     mclPpt: 10.0,
-    mclStatus: "Regulated — EPA NPDWR (April 2024)",
+    mclStatus: "Regulated by EPA NPDWR (April 2024)",
   },
   {
     abbrev: "PFHpS",
@@ -311,7 +311,7 @@ export const PFAS_COMPOUNDS: PfasCompound[] = [
     cas: "1763-23-1",
     chainLength: "long (C8)",
     mclPpt: 4.0,
-    mclStatus: "Regulated — EPA NPDWR (April 2024)",
+    mclStatus: "Regulated by EPA NPDWR (April 2024)",
   },
   {
     abbrev: "4:2FTS",
@@ -474,7 +474,7 @@ export const LAUNCH_CITIES = [
     population: 3500,
     contaminationSource: "Saint-Gobain / Honeywell plastics plants",
     settlementStatus: "Saint-Gobain/Honeywell settlement resolved",
-    newsHook: "Michael Hickey origin story — the village that broke PFAS into national news",
+    newsHook: "Michael Hickey origin story; the village that broke PFAS into national news",
   },
   {
     slug: "bennington-vt",

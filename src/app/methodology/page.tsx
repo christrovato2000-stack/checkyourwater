@@ -159,7 +159,7 @@ export default function MethodologyPage() {
             represent current water quality.
           </li>
           <li>
-            Not all water systems were tested — smaller systems serving fewer
+            Not all water systems were tested. Smaller systems serving fewer
             than 3,300 people and private wells are generally not included.
           </li>
           <li>

@@ -26,12 +26,12 @@ export default function GradeCard({
   showLabel = false,
   className = "",
 }: GradeCardProps) {
-  const display = grade ?? "—";
+  const display = grade ?? "-";
   const bg = grade ? getGradeColor(grade) : "#cbd5e1";
   const fg = getGradeTextColor(grade);
   const sz = SIZES[size];
   const aria = grade
-    ? `Grade ${grade} — ${formatGradeSummary(grade)}`
+    ? `Grade ${grade}: ${formatGradeSummary(grade)}`
     : "Grade not available";
 
   return (

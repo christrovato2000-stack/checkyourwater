@@ -20,9 +20,9 @@ export default function AboutPage() {
           CheckYourWater is a free, open-source public service tool that shows
           Americans what PFAS &ldquo;forever chemicals&rdquo; are in their
           drinking water. We use data from the EPA&rsquo;s Unregulated
-          Contaminant Monitoring Rule (UCMR 5) — the most comprehensive PFAS
-          testing program ever conducted in the United States, covering over
-          10,000 water systems.
+          Contaminant Monitoring Rule (UCMR 5). It&rsquo;s the largest PFAS
+          testing program the federal government has ever run, covering more
+          than 10,000 water systems.
         </p>
       </Section>
 
@@ -31,7 +31,7 @@ export default function AboutPage() {
           The EPA has collected extensive PFAS testing data, but accessing it
           requires navigating technical databases designed for regulators, not
           residents. CheckYourWater translates this data into letter grades,
-          plain-language explanations, and actionable next steps — so anyone
+          plain-language explanations, and actionable next steps, so anyone
           can understand what&rsquo;s in their water in seconds, not hours.
         </p>
       </Section>
@@ -40,7 +40,7 @@ export default function AboutPage() {
         <p>
           Unlike advocacy databases that use proprietary health guidelines,
           CheckYourWater uses the EPA&rsquo;s own Maximum Contaminant Levels
-          (MCLs) — the legally enforceable federal standards. Our grading
+          (MCLs), the legally enforceable federal standards. Our grading
           algorithm is open source, so anyone can verify how grades are
           calculated. We have no ads, no donation prompts, no sponsored
           content, and no commercial partnerships.
@@ -94,7 +94,7 @@ export default function AboutPage() {
             represent current water quality.
           </li>
           <li>
-            Not all water systems were tested — smaller systems serving fewer
+            Not all water systems were tested. Smaller systems serving fewer
             than 3,300 people and private wells are generally not included.
           </li>
           <li>

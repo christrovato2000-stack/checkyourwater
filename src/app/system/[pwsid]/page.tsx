@@ -35,8 +35,8 @@ export async function generateMetadata({
   const { system } = payload;
   const detected = system.compounds.filter((c) => c.detected).length;
   const exc = system.compounds.filter((c) => (c.mcl_ratio ?? 0) >= 1).length;
-  const title = `${system.pws_name} — Grade ${
-    system.grade ?? "—"
+  const title = `${system.pws_name}: Grade ${
+    system.grade ?? "-"
   } for PFAS in Drinking Water`;
   const description = `EPA UCMR 5 testing detected ${detected} PFAS compound${
     detected === 1 ? "" : "s"
@@ -103,10 +103,10 @@ export default async function SystemPage({
             value={
               system.population_served
                 ? formatPopulation(system.population_served)
-                : "—"
+                : "-"
             }
           />
-          <Stat label="Source type" value={system.source_type ?? "—"} />
+          <Stat label="Source type" value={system.source_type ?? "-"} />
           <Stat label="Compounds detected" value={String(detectedCount)} />
           <Stat label="Above federal limits" value={String(exceedanceCount)} />
         </dl>
@@ -256,7 +256,7 @@ export default async function SystemPage({
         </ul>
         <p className="mt-4 font-sans text-xs italic leading-relaxed text-slate-600">
           This data reflects EPA testing. Your water utility may have more
-          recent results — contact them directly for the most current
+          recent results. Contact them directly for the most current
           information.
         </p>
       </section>
@@ -319,7 +319,7 @@ function gradeExplanation(system: {
       return wc && wr
         ? `This system received a grade of C because ${wc} was detected at ${(
             wr * 100
-          ).toFixed(0)}% of the EPA Maximum Contaminant Level — approaching but not yet exceeding the federal limit.`
+          ).toFixed(0)}% of the EPA Maximum Contaminant Level, approaching but not yet exceeding the federal limit.`
         : "This system received a grade of C because at least one compound is between 50% and 100% of the EPA Maximum Contaminant Level.";
     case "D":
       return wc && wr
@@ -331,7 +331,7 @@ function gradeExplanation(system: {
       return wc && wr
         ? `This system received a grade of F because ${wc} exceeds the EPA Maximum Contaminant Level by ${wr.toFixed(
             1
-          )}× — more than five times the federal limit.`
+          )}×, more than five times the federal limit.`
         : "This system received a grade of F because at least one compound exceeds five times the EPA Maximum Contaminant Level.";
     default:
       return "This system has not yet been assigned a grade because EPA testing data is incomplete.";

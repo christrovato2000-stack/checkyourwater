@@ -24,7 +24,7 @@ export const supabasePublic: SupabaseClient = createClient(
 export function getAdminClient(): SupabaseClient {
   if (!serviceKey) {
     throw new Error(
-      "SUPABASE_SERVICE_ROLE_KEY is not set — admin client requires it"
+      "SUPABASE_SERVICE_ROLE_KEY is not set; admin client requires it"
     );
   }
   return createClient(url!, serviceKey, { auth: { persistSession: false } });

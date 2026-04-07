@@ -10,7 +10,7 @@ export const revalidate = 86400;
 export const metadata: Metadata = {
   title: "PFAS-Affected Communities | CheckYourWater",
   description:
-    "Browse every city CheckYourWater has profiled for PFAS contamination — letter grades, worst compounds, and direct links to each community report.",
+    "Browse every city CheckYourWater has profiled for PFAS contamination: letter grades, worst compounds, and direct links to each community report.",
   alternates: { canonical: "/cities" },
 };
 
@@ -107,15 +107,15 @@ export default async function CitiesIndexPage() {
                   <GradeCard grade={c.grade} size="sm" />
                 </td>
                 <td className="px-4 py-3 text-slate-700">
-                  {c.population ? formatPopulation(c.population) : "—"}
+                  {c.population ? formatPopulation(c.population) : "-"}
                 </td>
                 <td className="px-4 py-3 text-slate-700">
-                  {c.worst_compound ?? "—"}
+                  {c.worst_compound ?? "-"}
                 </td>
                 <td className="px-4 py-3 text-slate-700">
                   {c.worst_ratio !== null
                     ? formatRatio(Number(c.worst_ratio))
-                    : "—"}
+                    : "-"}
                 </td>
                 <td className="px-4 py-3 text-slate-700">
                   {c.total_exceedances ?? 0}

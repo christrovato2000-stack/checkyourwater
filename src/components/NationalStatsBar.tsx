@@ -7,7 +7,7 @@ interface Stats {
   pfasCompoundsTracked: number;
 }
 
-// Fallback values if the live query fails — refresh quarterly.
+// Fallback values if the live query fails. Refresh quarterly.
 const FALLBACK: Stats = {
   totalSystems: 10_297,
   affectedPopulation: 176_000_000,

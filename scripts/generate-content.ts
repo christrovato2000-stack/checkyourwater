@@ -2,8 +2,8 @@
  * Generate AI content for checkyourwater.org.
  *
  * Two batches:
- *   1. Chemical explainers — one per row in the `chemicals` table
- *   2. City summaries     — one per row in `cities` where launch_wave = 1
+ *   1. Chemical explainers: one per row in the `chemicals` table
+ *   2. City summaries:     one per row in `cities` where launch_wave = 1
  *
  * Calls Claude Sonnet via the Anthropic Messages API and upserts the
  * generated markdown into the `content` table. Skips anything that's
@@ -145,25 +145,25 @@ Write EXACTLY these 5 sections with these exact headings:
 One paragraph (2-3 sentences). What is this chemical? Use its full name once, then the abbreviation. Mention it's a type of PFAS / "forever chemical."
 
 ## Where does it come from?
-One paragraph (2-3 sentences). What products or industries use or release this chemical? Be specific — name actual product types (non-stick pans, food packaging, firefighting foam, etc.)
+One paragraph (2-3 sentences). What products or industries use or release this chemical? Be specific. Name actual product types (non-stick pans, food packaging, firefighting foam, etc.)
 
 ## Health concerns
-One paragraph (3-4 sentences). What health effects has research linked to this compound? Distinguish between strong evidence (epidemiological studies, IARC classifications) and preliminary findings (animal studies, limited human data). NEVER say "causes" — say "has been linked to" or "associated with in studies." If evidence is limited, say so honestly.
+One paragraph (3-4 sentences). What health effects has research linked to this compound? Distinguish between strong evidence (epidemiological studies, IARC classifications) and preliminary findings (animal studies, limited human data). NEVER say "causes". Say "has been linked to" or "associated with in studies." If evidence is limited, say so honestly.
 
 ## EPA standard
 One paragraph (2-3 sentences). What is the EPA's MCL for this compound and when was it set? If there is no MCL, explain that no federal limit has been established and what that means. Explain what the MCL means in practical terms.
 
 ## What you can do
-One paragraph (2-3 sentences). If this compound is found in your water, what specific action should you take? Name the filter type(s) that remove it (reverse osmosis, granular activated carbon, ion exchange — be specific about which work for THIS compound). State that boiling does NOT remove PFAS.
+One paragraph (2-3 sentences). If this compound is found in your water, what specific action should you take? Name the filter type(s) that remove it (reverse osmosis, granular activated carbon, ion exchange; be specific about which work for THIS compound). State that boiling does NOT remove PFAS.
 
 RULES:
 - 8th-grade reading level maximum
 - No jargon without immediate explanation
-- Never provide medical advice — say "consult a healthcare provider" for health-specific questions
+- Never provide medical advice; say "consult a healthcare provider" for health-specific questions
 - Cite "EPA" or "research studies" as sources, never specific papers
 - Total length: 250-350 words
 - Do not add any sections beyond the 5 listed above
-- Do not add a disclaimer — we handle that separately`;
+- Do not add a disclaimer; we handle that separately`;
 }
 
 function buildCityPrompt(
@@ -199,7 +199,7 @@ function buildCityPrompt(
                 return `  - ${d.compound_abbrev}: ${conc}${ratio}`;
               })
               .join("\n");
-      return `${s.pws_name} — Grade ${s.grade ?? "—"}\n${dets}`;
+      return `${s.pws_name}: Grade ${s.grade ?? "-"}\n${dets}`;
     })
     .join("\n\n");
 
@@ -207,7 +207,7 @@ function buildCityPrompt(
 
 CITY: ${city.city_name}, ${city.state_name}
 POPULATION: ${city.population ?? "unknown"}
-GRADE: ${city.grade ?? "—"}
+GRADE: ${city.grade ?? "-"}
 
 WATER SYSTEMS AND RESULTS:
 ${systemsBlock}
@@ -218,7 +218,7 @@ SETTLEMENT STATUS: ${city.settlement_status ?? "No settlement information availa
 Write EXACTLY these 3 sections:
 
 ## Summary
-One paragraph (3-4 sentences). Lead with the most important finding — what grade did the city get and what does that mean for residents? Name the specific compound(s) that exceed limits (if any) and by how much. Put the numbers in context ("X times the federal limit"). End with whether the contamination source is known.
+One paragraph (3-4 sentences). Lead with the most important finding: what grade did the city get and what does that mean for residents? Name the specific compound(s) that exceed limits (if any) and by how much. Put the numbers in context ("X times the federal limit"). End with whether the contamination source is known.
 
 ## What the data shows
 One paragraph (3-4 sentences). Go deeper into the specific compounds detected. How many were found? How do the levels compare to federal limits? If there are multiple water systems, explain which ones are affected and which are clean. Be precise with numbers.
@@ -231,7 +231,7 @@ RULES:
 - Every claim must be supported by the data provided above
 - Use "parts per trillion" and include the number, not just "exceeds limits"
 - Never provide medical advice
-- Tone: local news anchor — clear, direct, no panic, no sugarcoating
+- Tone: local news anchor. Clear, direct, no panic, no sugarcoating
 - Total length: 200-300 words
 - Do not add any sections beyond the 3 listed above`;
 }
@@ -304,7 +304,7 @@ async function generateChemicalExplainers(): Promise<void> {
         `  [${i}/${chemicals.length}] ${refKey}: generated (${body.length} chars)`
       );
     } catch (e) {
-      console.error(`  [${i}/${chemicals.length}] ${refKey}: FAILED — ${(e as Error).message}`);
+      console.error(`  [${i}/${chemicals.length}] ${refKey}: FAILED: ${(e as Error).message}`);
     }
     await sleep(REQUEST_DELAY_MS);
   }
@@ -413,7 +413,7 @@ async function generateCitySummaries(): Promise<void> {
       );
     } catch (e) {
       console.error(
-        `  [${i}/${cities.length}] ${city.slug}: FAILED — ${(e as Error).message}`
+        `  [${i}/${cities.length}] ${city.slug}: FAILED: ${(e as Error).message}`
       );
     }
     await sleep(REQUEST_DELAY_MS);

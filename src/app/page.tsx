@@ -56,7 +56,7 @@ export default async function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* SECTION 1 — HERO */}
+      {/* SECTION 1: HERO */}
       <section className="border-b border-slate-200">
         <div className="mx-auto flex min-h-[70vh] max-w-[1200px] flex-col items-center justify-center px-4 py-16 text-center sm:px-6 sm:py-24 md:min-h-[calc(100vh-62px)]">
           <h1 className="font-serif text-4xl font-bold leading-tight tracking-tight text-slate-900 sm:text-5xl md:text-6xl">
@@ -72,10 +72,10 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 2 — NATIONAL STATS BAR */}
+      {/* SECTION 2: NATIONAL STATS BAR */}
       <NationalStatsBar />
 
-      {/* SECTION 3 — HOW IT WORKS */}
+      {/* SECTION 3: HOW IT WORKS */}
       <section className="mx-auto max-w-[1200px] px-4 py-20 sm:px-6">
         <h2 className="mx-auto max-w-[720px] text-center font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
           How it works
@@ -116,7 +116,7 @@ export default async function HomePage() {
         </ol>
       </section>
 
-      {/* SECTION 4 — WHAT ARE PFAS? */}
+      {/* SECTION 4: WHAT ARE PFAS? */}
       <section className="border-y border-slate-200 bg-slate-50">
         <div className="mx-auto max-w-[720px] px-4 py-20 sm:px-6">
           <h2 className="font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
@@ -142,7 +142,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* SECTION 5 — WORST-AFFECTED CITIES */}
+      {/* SECTION 5: WORST-AFFECTED CITIES */}
       <section className="mx-auto max-w-[1200px] px-4 py-20 sm:px-6">
         <h2 className="max-w-[720px] font-serif text-3xl font-bold text-slate-900 sm:text-4xl">
           Cities most affected by PFAS contamination
@@ -175,7 +175,7 @@ export default async function HomePage() {
                           <>
                             Worst: <strong>{c.worst_compound}</strong>{" "}
                             {c.worst_ratio !== null && (
-                              <>— {formatRatio(Number(c.worst_ratio))}</>
+                              <>at {formatRatio(Number(c.worst_ratio))}</>
                             )}
                           </>
                         ) : (

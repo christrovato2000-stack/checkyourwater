@@ -4,7 +4,7 @@ import { useEffect } from "react";
 
 /**
  * Last-resort error boundary for failures inside the root layout itself.
- * Cannot rely on layout components — must render its own <html>/<body>.
+ * Cannot rely on layout components, must render its own <html>/<body>.
  */
 export default function GlobalError({
   error,

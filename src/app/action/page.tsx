@@ -99,10 +99,10 @@ export default function ActionPage() {
               className="text-blue-600 hover:underline"
             >
               Tap Score (mytapscore.com)
-            </a>{" "}
-            — PFAS test kits starting at ~$300
+            </a>
+            . PFAS test kits start at around $300.
           </li>
-          <li>SimpleLab — mail-in water testing</li>
+          <li>SimpleLab: mail-in water testing</li>
           <li>
             Contact your state health department for local testing options
           </li>

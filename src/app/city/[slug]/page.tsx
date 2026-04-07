@@ -42,8 +42,8 @@ export async function generateMetadata({
     };
   }
   const { city, totalDetected, totalExceedances } = payload;
-  const title = `${city.city_name}, ${city.state_code} — Grade ${
-    city.grade ?? "—"
+  const title = `${city.city_name}, ${city.state_code}: Grade ${
+    city.grade ?? "-"
   } for PFAS in Drinking Water`;
   const description = payload.summary?.body
     ? firstSentence(payload.summary.body)
@@ -96,7 +96,7 @@ export default async function CityPage({
 
   return (
     <article className="mx-auto max-w-[900px] px-4 py-12 sm:px-6 sm:py-16">
-      {/* SECTION 1 — HERO */}
+      {/* SECTION 1: HERO */}
       <header>
         <p className="font-sans text-sm uppercase tracking-widest text-slate-500">
           {city.state_name}
@@ -134,7 +134,7 @@ export default async function CityPage({
         />
       </header>
 
-      {/* SECTION 2 — CONTAMINATION SUMMARY */}
+      {/* SECTION 2: CONTAMINATION SUMMARY */}
       <section className="mt-14">
         <h2 className="font-serif text-3xl font-bold text-slate-900">
           What was found in {city.city_name}&rsquo;s water
@@ -227,7 +227,7 @@ export default async function CityPage({
         )}
       </section>
 
-      {/* SECTION 3 — AI SUMMARY */}
+      {/* SECTION 3: AI SUMMARY */}
       <section className="mt-16">
         <h2 className="font-serif text-3xl font-bold text-slate-900">
           About PFAS contamination in {city.city_name}
@@ -251,7 +251,7 @@ export default async function CityPage({
         )}
       </section>
 
-      {/* SECTION 4 — WHAT YOU CAN DO */}
+      {/* SECTION 4: WHAT YOU CAN DO */}
       <section className="mt-16">
         <ActionsByGrade
           grade={city.grade}
@@ -281,7 +281,7 @@ export default async function CityPage({
         )}
       </section>
 
-      {/* SECTION 5 — CONTEXT */}
+      {/* SECTION 5: CONTEXT */}
       <section className="mt-16">
         <h2 className="font-serif text-3xl font-bold text-slate-900">
           How {city.city_name} compares
@@ -300,7 +300,7 @@ export default async function CityPage({
         )}
       </section>
 
-      {/* SECTION 6 — DATA TRANSPARENCY */}
+      {/* SECTION 6: DATA TRANSPARENCY */}
       <section className="mt-16 rounded-lg border border-slate-200 bg-slate-50 p-6">
         <h2 className="font-serif text-2xl font-semibold text-slate-900">
           Where this data comes from
@@ -338,7 +338,7 @@ export default async function CityPage({
         </ul>
         <p className="mt-4 font-sans text-xs italic leading-relaxed text-slate-600">
           This data reflects EPA testing. Your water utility may have more
-          recent results — contact them directly for the most current
+          recent results. Contact them directly for the most current
           information.
         </p>
       </section>

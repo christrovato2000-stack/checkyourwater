@@ -76,7 +76,7 @@ async function main() {
       continue;
     }
     if (!source?.length) {
-      console.error(`  source zip ${c.from_zip} has no mappings — skipping`);
+      console.error(`  source zip ${c.from_zip} has no mappings, skipping`);
       continue;
     }
 

@@ -214,7 +214,7 @@ export async function loadCity(slug: string): Promise<CityPagePayload | null> {
     return (b.population_served ?? 0) - (a.population_served ?? 0);
   });
 
-  // City summary content (may not exist yet — Mission 4 generates it)
+  // City summary content (may not exist yet; Mission 4 generates it)
   const { data: contentRow } = await supabasePublic
     .from("content")
     .select("title, body")

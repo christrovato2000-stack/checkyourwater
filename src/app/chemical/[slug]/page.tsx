@@ -1,5 +1,5 @@
 /**
- * /chemical/[slug] — one page per PFAS compound.
+ * /chemical/[slug]: one page per PFAS compound.
  *
  * Slugs are always lowercase (e.g. /chemical/pfoa, /chemical/hfpo-da). The
  * chemicals table stores compound_abbrev with original casing/punctuation
@@ -287,7 +287,7 @@ function Stat({ label, value }: { label: string; value: string }) {
 
 /**
  * Lightweight markdown renderer for the 5-section explainer body.
- * Only handles `## headings` and paragraphs separated by blank lines —
+ * Only handles `## headings` and paragraphs separated by blank lines,
  * which is the only structure the prompt asks Claude to produce.
  */
 function renderMarkdown(md: string): React.ReactNode {

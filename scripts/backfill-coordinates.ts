@@ -9,7 +9,7 @@
  *
  * For each system, we pick the primary zip (largest population, falling back
  * to is_primary, then first) and use its ZCTA centroid as the system's
- * lat/lng. This gives ~zip-level accuracy — good enough for a national map.
+ * lat/lng. This gives ~zip-level accuracy, good enough for a national map.
  *
  * Run: npm run data:backfill-coords
  */

@@ -48,7 +48,7 @@ function wordCount(s: string): number {
 }
 
 function findNumbers(s: string): number[] {
-  // Pull plain decimals or integers — not phone-number-like sequences.
+  // Pull plain decimals or integers, not phone-number-like sequences.
   const matches = s.match(/\b\d+(?:\.\d+)?\b/g) ?? [];
   return matches.map((m) => Number(m));
 }

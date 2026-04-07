@@ -5,7 +5,7 @@ import Link from "next/link";
 
 /**
  * Route-level error boundary. Renders inside the root layout, so the nav
- * and footer remain visible — gives the user a path forward instead of a
+ * and footer remain visible, giving the user a path forward instead of a
  * dead end. Technical details are logged to the console (and can be
  * forwarded to Sentry once the DSN is configured) but never shown to users.
  */
@@ -30,7 +30,7 @@ export default function RouteError({
       </h1>
       <p className="mt-4 font-serif text-lg leading-relaxed text-slate-700">
         We hit an unexpected problem loading this page. It&rsquo;s not your
-        fault — please try again, or head back to the homepage.
+        fault. Please try again, or head back to the homepage.
       </p>
       <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
         <button

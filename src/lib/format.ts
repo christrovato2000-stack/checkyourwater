@@ -5,7 +5,7 @@
 import type { Grade } from "@/types/database";
 
 export function formatPPT(value: number | null | undefined): string {
-  if (value === null || value === undefined) return "—";
+  if (value === null || value === undefined) return "-";
   if (value === 0) return "<MRL";
   if (value < 1) return `${value.toFixed(2)} ppt`;
   if (value < 10) return `${value.toFixed(1)} ppt`;
@@ -20,12 +20,12 @@ export function formatRatio(ratio: number | null | undefined): string {
 }
 
 export function formatNumber(value: number | null | undefined): string {
-  if (value === null || value === undefined) return "—";
+  if (value === null || value === undefined) return "-";
   return value.toLocaleString("en-US");
 }
 
 export function formatPopulation(value: number | null | undefined): string {
-  if (value === null || value === undefined) return "—";
+  if (value === null || value === undefined) return "-";
   if (value >= 1_000_000) return `${(value / 1_000_000).toFixed(1)}M`;
   if (value >= 1_000) return `${(value / 1_000).toFixed(value >= 10_000 ? 0 : 1)}K`;
   return value.toLocaleString("en-US");
@@ -37,11 +37,11 @@ export function formatPopulation(value: number | null | undefined): string {
 // to a depth where contrast clears the bar while still reading as
 // lime-green / mustard-yellow within the A→F gradient.
 export const GRADE_COLORS: Record<Grade, string> = {
-  A: "#15803d", // green-700  — 5.14:1 vs white
-  B: "#4d7c0f", // lime-700   — 5.46:1 vs white
-  C: "#a16207", // yellow-700 — 4.83:1 vs white
-  D: "#c2410c", // orange-700 — 5.27:1 vs white
-  F: "#b91c1c", // red-700    — 6.36:1 vs white
+  A: "#15803d", // green-700,  5.14:1 vs white
+  B: "#4d7c0f", // lime-700,   5.46:1 vs white
+  C: "#a16207", // yellow-700, 4.83:1 vs white
+  D: "#c2410c", // orange-700, 5.27:1 vs white
+  F: "#b91c1c", // red-700,    6.36:1 vs white
 };
 
 export function getGradeColor(grade: Grade | string | null | undefined): string {
@@ -76,5 +76,5 @@ export function formatGradeSummary(grade: Grade | string | null | undefined): st
 
 export function gradeAriaLabel(grade: Grade | string | null | undefined): string {
   if (!grade) return "Grade not available";
-  return `Grade: ${grade} — ${formatGradeSummary(grade)}`;
+  return `Grade: ${grade}, ${formatGradeSummary(grade)}`;
 }

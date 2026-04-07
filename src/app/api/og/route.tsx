@@ -3,7 +3,7 @@ import { supabasePublic } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
-// Keep in sync with src/lib/format.ts — WCAG AA against white text.
+// Keep in sync with src/lib/format.ts. WCAG AA against white text.
 const GRADE_COLORS: Record<string, string> = {
   A: "#15803d",
   B: "#4d7c0f",
@@ -14,7 +14,7 @@ const GRADE_COLORS: Record<string, string> = {
 
 const GRADE_SUMMARIES: Record<string, string> = {
   A: "No PFAS detected above reporting limits",
-  B: "PFAS detected — below federal limits",
+  B: "PFAS detected, below federal limits",
   C: "PFAS approaching federal limits",
   D: "PFAS exceeds federal limits",
   F: "PFAS significantly exceeds federal limits",
@@ -136,7 +136,7 @@ function defaultCard() {
 }
 
 function cityCard(city: CityOgRow) {
-  const grade = (city.grade ?? "—").toString();
+  const grade = (city.grade ?? "-").toString();
   const gradeColor = GRADE_COLORS[grade] ?? "#4a5568";
   const summary =
     GRADE_SUMMARIES[grade] ??

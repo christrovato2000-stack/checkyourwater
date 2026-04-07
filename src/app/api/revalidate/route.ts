@@ -21,7 +21,7 @@
 import { revalidatePath, revalidateTag } from "next/cache";
 import type { NextRequest } from "next/server";
 
-// Must be dynamic — this route mutates server cache state and should
+// Must be dynamic: this route mutates server cache state and should
 // never be statically optimized.
 export const dynamic = "force-dynamic";
 
@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     const type =
       typeRaw === "page" || typeRaw === "layout" ? typeRaw : undefined;
     // If the path contains a dynamic segment like /city/[slug] a type
-    // is required by Next — default to 'page' in that case.
+    // is required by Next, so default to 'page' in that case.
     const hasDynamicSegment = /\[.+\]/.test(path);
     if (hasDynamicSegment && !type) {
       revalidatePath(path, "page");
@@ -78,7 +78,7 @@ export async function POST(request: NextRequest) {
   if (tag) {
     // Next 16 requires a second argument. `{ expire: 0 }` gives the
     // webhook-style "expire immediately" semantics that match the
-    // intent of a manual data-refresh trigger — any subsequent request
+    // intent of a manual data-refresh trigger; any subsequent request
     // for tagged data must fetch fresh.
     revalidateTag(tag, { expire: 0 });
     revalidated.tags.push(tag);

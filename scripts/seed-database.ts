@@ -7,7 +7,7 @@
  *   3. detections
  *   4. zip_to_water_system
  *
- * Idempotent — uses upserts. Re-run safely.
+ * Idempotent: uses upserts. Re-run safely.
  *
  * Run: npm run data:seed
  */
@@ -150,7 +150,7 @@ async function main() {
   );
 
   // Only seed system-compound pairs that actually have a real PWSID in
-  // water_systems (above) — they all do, since both come from UCMR 5.
+  // water_systems (above), since they all do (both come from UCMR 5).
   const detectionRows = aggs.map((a) => ({
     pwsid: a.pwsid,
     compound_name: a.compound_name,

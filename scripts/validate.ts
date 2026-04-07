@@ -82,7 +82,7 @@ async function main() {
 
   console.log("\nINTEGRITY CHECKS");
 
-  // Orphan detections — pwsid not in water_systems
+  // Orphan detections: pwsid not in water_systems
   const { data: pwsRows } = await sb.from("water_systems").select("pwsid");
   const allPwsids = new Set((pwsRows ?? []).map((r) => r.pwsid));
   console.log(`  water_systems known PWSIDs: ${allPwsids.size.toLocaleString()}`);
@@ -106,7 +106,7 @@ async function main() {
     `  zip mapping sample orphans: ${orphanZip.length}/${sampleZip?.length ?? 0}`
   );
 
-  // Systems with no detections (expected — these are grade A)
+  // Systems with no detections (expected: these are grade A)
   const noDetSystems = await count("water_systems", (q) =>
     q.eq("total_pfas_detected", 0)
   );

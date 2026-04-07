@@ -69,7 +69,7 @@ function introLine(
 function bulletsForGrade(grade: Grade | null): string[] {
   if (grade === "A" || grade === "B") {
     return [
-      "Read your utility's annual Consumer Confidence Report (CCR) — request a copy if you don't receive one.",
+      "Read your utility's annual Consumer Confidence Report (CCR), and request a copy if you don't receive one.",
       "Sign up for water quality alerts from your utility.",
       "If you're on a private well, get it independently tested for PFAS.",
       "Reduce PFAS exposure from non-water sources: avoid non-stick cookware, stain-resistant fabrics, and grease-resistant food packaging.",
@@ -86,10 +86,10 @@ function bulletsForGrade(grade: Grade | null): string[] {
   // D / F
   return [
     "Install a reverse osmosis (RO) or activated-carbon water filter certified to NSF/ANSI Standard 53 or 58 for PFAS reduction. RO systems remove the widest range of PFAS compounds.",
-    "Do NOT boil your water to remove PFAS — boiling concentrates them.",
+    "Do NOT boil your water to remove PFAS. Boiling concentrates them.",
     "Request your most recent Consumer Confidence Report from your utility and ask when PFAS treatment will be installed.",
     "Contact your local elected officials and water utility board to demand a remediation timeline.",
     "Get independent water testing through services like Tap Score (mytapscore.com) if you want to verify your in-home levels.",
-    "Talk to your healthcare provider about PFAS exposure — especially if you are pregnant, nursing, or have young children.",
+    "Talk to your healthcare provider about PFAS exposure, especially if you are pregnant, nursing, or have young children.",
   ];
 }

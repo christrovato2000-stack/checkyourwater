@@ -1,4 +1,4 @@
--- checkyourwater.org — full database schema
+-- checkyourwater.org full database schema
 -- Run this in Supabase SQL editor (or via psql) once per project.
 
 CREATE EXTENSION IF NOT EXISTS postgis;
