@@ -49,7 +49,7 @@ const GRADED_PATH = path.join(DATA_DIR, "graded-systems.json");
 
 const SITE_URL = process.env.SITE_URL ?? "https://checkyourwater.org";
 const DEFAULT_ZIP_URL =
-  "https://www.epa.gov/system/files/other-files/2025-01/ucmr-5-occurrence-data.zip";
+  "https://www.epa.gov/system/files/other-files/2023-08/ucmr5-occurrence-data.zip";
 const LANDING_URL =
   "https://www.epa.gov/dwucmr/occurrence-data-unregulated-contaminant-monitoring-rule";
 
@@ -103,7 +103,7 @@ async function resolveZipUrl(): Promise<string> {
     if (res.ok) {
       const html = await res.text();
       const match = html.match(
-        /https:\/\/www\.epa\.gov\/system\/files\/[^"']*ucmr[-_]5[^"']*occurrence[^"']*\.zip/i
+        /https:\/\/www\.epa\.gov\/system\/files\/[^"']*ucmr[-_]?5[^"']*occurrence[^"']*\.zip/i
       );
       if (match) {
         console.log(`Resolved zip URL from EPA landing page: ${match[0]}`);
