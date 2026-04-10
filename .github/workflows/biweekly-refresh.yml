@@ -1,0 +1,90 @@
+name: Biweekly Refresh
+
+# Runs every 2 weeks. Downloads the latest EPA UCMR 5 occurrence-data zip,
+# diffs it against what's currently in Supabase, re-runs the parse → seed
+# pipeline if anything changed, then hits every /city/<slug> page on
+# checkyourwater.org and emails a summary.
+#
+# All of the heavy lifting lives in scripts/biweekly-refresh.ts. This
+# workflow is mostly orchestration: install deps, run the script, commit
+# the updated UCMR 5 hash file (and regenerated GeoJSON) back to main if
+# anything actually changed.
+#
+# Required GitHub secrets:
+#   - NEXT_PUBLIC_SUPABASE_URL          (already set for other workflows)
+#   - SUPABASE_SERVICE_ROLE_KEY         (already set for other workflows)
+#   - RESEND_API_KEY                    (already set for other workflows; if
+#                                        missing the script logs the email
+#                                        body instead of sending it)
+#   - NOTIFY_EMAIL                      (NEW — recipient of the summary)
+#
+# Optional secrets:
+#   - RESEND_FROM_EMAIL                 (overrides the default Resend
+#                                        sending address)
+#   - UCMR5_ZIP_URL                     (manually pin a specific EPA zip
+#                                        URL; the script otherwise scrapes
+#                                        the EPA landing page and falls
+#                                        back to the last-known link)
+
+on:
+  schedule:
+    # Every other Monday at 13:00 UTC (~09:00 ET).
+    # GitHub cron has no native "every 2 weeks" — we run weekly and the
+    # script gates itself on the file hash, so a no-op week is cheap.
+    - cron: "0 13 * * 1"
+  workflow_dispatch:
+    inputs:
+      force:
+        description: 'Force refresh even if hash matches (set to "yes")'
+        required: false
+        default: "no"
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run biweekly refresh
+        env:
+          NEXT_PUBLIC_SUPABASE_URL: ${{ secrets.NEXT_PUBLIC_SUPABASE_URL }}
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+          RESEND_API_KEY: ${{ secrets.RESEND_API_KEY }}
+          RESEND_FROM_EMAIL: ${{ secrets.RESEND_FROM_EMAIL }}
+          NOTIFY_EMAIL: ${{ secrets.NOTIFY_EMAIL }}
+          UCMR5_ZIP_URL: ${{ secrets.UCMR5_ZIP_URL }}
+          SITE_URL: https://checkyourwater.org
+          FORCE_REFRESH: ${{ github.event.inputs.force }}
+        run: |
+          # If a manual run requested a forced refresh, blow away the hash
+          # file so the script treats the data as new.
+          if [ "${FORCE_REFRESH:-no}" = "yes" ]; then
+            echo "Force refresh requested — clearing committed hash."
+            rm -f .ucmr5-hash
+          fi
+          npx tsx scripts/biweekly-refresh.ts
+
+      - name: Commit refreshed hash + GeoJSON if changed
+        if: success() || failure()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add .ucmr5-hash public/data/systems.geojson 2>/dev/null || true
+          if git diff --staged --quiet; then
+            echo "No data changes to commit."
+          else
+            git commit -m "Biweekly refresh: $(date -u +%Y-%m-%d)"
+            git push
+          fi
